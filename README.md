@@ -15,6 +15,12 @@ VBA（Excel VBE）の経験をベースに、ターミナル操作からマル�
 
 ```
 00  VS Code           エディタの使い方（どのレベルからでも参照）
+08  Mac Finder        ファイル管理の基本（どのレベルからでも参照）
+09  Mac 基礎操作       Mac の画面・キーボード・アプリ管理（どのレベルからでも参照）
+10  Mac おすすめアプリ   開発・生産性向上アプリの導入（どのレベルからでも参照）
+11  ターミナル CLI ツール  モダンなコマンド代替・開発支援ツール（どのレベルからでも参照）
+12  おすすめ Web サイト   学習・AI・開発支援の定番サイト（どのレベルからでも参照）
+13  SNS・情報発信        X・YouTube・Discord・ポッドキャスト（どのレベルからでも参照）
     ─────────────────────────────────────────────
 01  基本操作           ターミナルと Claude Code の基礎
 02  実践               Git・GitHub・開発フロー
@@ -23,6 +29,8 @@ VBA（Excel VBE）の経験をベースに、ターミナル操作からマル�
 05  公開・運用          デプロイ・CI/CD・保守
 06  スキル・プラグイン   Claude Code の能力を拡張
 07  マルチエージェント   複数 AI の協調・SDK
+    ─────────────────────────────────────────────
+20  学習ロードマップ     初心者からプロフェッショナルへの道筋
 ```
 
 ## 各ガイドの内容
@@ -39,6 +47,116 @@ VS Code のインストールから基本操作、Claude Code との連携まで
 | ショートカット | コマンドパレット・ファイル検索・ターミナル開閉 |
 | 拡張機能 | Japanese Language Pack・Claude Code・Python |
 | Claude Code 連携 | 内蔵ターミナルでの実行・拡張機能 |
+
+---
+
+### [08 - Mac Finder 基本操作ガイド](08-mac-finder-guide.md)
+
+Mac のファイル管理アプリ Finder の使い方。Windows エクスプローラーとの違いを中心に解説。
+どのレベルからでも参照できる独立したガイド。
+
+| トピック | 内容 |
+|---------|------|
+| 画面構成 | ツールバー・サイドバー・メインエリア・パスバー |
+| 基本操作 | 移動・コピー・名前変更・削除・クイックルック |
+| ナビゲーション | フォルダ移動・パス指定・サイドバー活用 |
+| 検索 | Finder 内検索・Spotlight |
+| おすすめ設定 | パスバー表示・拡張子表示・隠しファイル |
+| ターミナル連携 | `open .`・パスのドラッグ&ドロップ |
+
+---
+
+### [09 - Mac 基礎操作ガイド](09-mac-basics-guide.md)
+
+Mac の画面構成・キーボード・トラックパッド・アプリ管理・システム設定まで、Mac の基礎知識を体系的にまとめたガイド。
+どのレベルからでも参照できる独立したガイド。
+
+| トピック | 内容 |
+|---------|------|
+| 画面構成 | メニューバー・Dock・デスクトップ・通知センター |
+| キーボード | 修飾キーの対応（Ctrl→Cmd）・記号の読み方・主要ショートカット |
+| トラックパッド | ジェスチャー操作（スクロール・ズーム・3本指スワイプ） |
+| アプリの基本 | 起動・切替（Cmd+Tab）・終了（×で終了しない）・強制終了 |
+| Dock・Mission Control | 配置・仮想デスクトップ・Split View |
+| Spotlight・スクリーンショット | 万能ランチャー・画面キャプチャ・画面収録 |
+| インストール・設定 | App Store・dmg・Homebrew・おすすめ初期設定 |
+| セキュリティ・バックアップ | FileVault・Gatekeeper・Time Machine |
+| トラブルシューティング | フリーズ対処・ディスク容量・セーフモード |
+
+---
+
+### [10 - Mac おすすめアプリガイド](10-mac-apps-guide.md)
+
+Mac に導入すべき開発・生産性向上アプリをまとめたガイド。Homebrew での一括セットアップ方法も解説。
+どのレベルからでも参照できる独立したガイド。
+
+| トピック | 内容 |
+|---------|------|
+| ターミナル・シェル | iTerm2・Oh My Zsh・Starship |
+| パッケージマネージャー | Homebrew 活用・Brewfile で一括管理 |
+| エディタ・IDE | VS Code・Cursor・CotEditor |
+| Git・GitHub | GitHub Desktop・GitKraken・gh CLI |
+| API・データベース | Postman・Bruno・TablePlus・DB Browser |
+| ブラウザ・開発ツール | Chrome（DevTools）・Firefox・Arc |
+| ウィンドウ管理・生産性 | Rectangle・Raycast・Clipy・Karabiner-Elements |
+| ドキュメント・メモ | Notion・Obsidian・Markdown エディタ |
+| その他の便利ツール | AppCleaner・The Unarchiver・Stats・Hidden Bar |
+
+---
+
+### [11 - ターミナル CLI ツールガイド](11-terminal-tools-guide.md)
+
+ターミナルで使うモダンな CLI ツール（コマンド代替・開発支援ツール）をまとめたガイド。
+どのレベルからでも参照できる独立したガイド。
+
+| トピック | 内容 |
+|---------|------|
+| モダンなコマンド代替 | eza(ls)・bat(cat)・fd(find)・ripgrep(grep)・sd(sed)・dust(du)・duf(df)・delta(diff) |
+| ファイル操作・検索 | fzf（あいまい検索）・tree・zoxide(cd)・trash-cli |
+| JSON・データ処理 | jq・yq・fx |
+| ネットワーク・HTTP | curl・wget・httpie・xh |
+| プロセス・システム監視 | htop・btop・procs・watch |
+| バージョン管理（言語） | mise(asdf後継)・nvm・fnm・pyenv |
+| Git 拡張 | lazygit・tig・git-delta |
+| Docker・コンテナ | Docker Desktop・lazydocker・dive |
+| その他の便利ツール | tldr・thefuck・neofetch・tokei・hyperfine |
+
+---
+
+### [12 - おすすめ Web サイトガイド](12-web-resources-guide.md)
+
+開発者がブックマークしておくべき Web サイト・オンラインサービスをまとめたガイド。
+どのレベルからでも参照できる独立したガイド。
+
+| トピック | 内容 |
+|---------|------|
+| 公式ドキュメント・リファレンス | MDN・Python Docs・DevDocs・Can I Use |
+| 学習プラットフォーム | freeCodeCamp・The Odin Project・Codecademy・Udemy |
+| 技術コミュニティ・Q&A | Stack Overflow・GitHub Discussions・Qiita・Zenn・Dev.to |
+| AI サービス・ツール | Claude・ChatGPT・GitHub Copilot・Perplexity・v0 |
+| ホスティング・デプロイ | Vercel・Netlify・Render・Cloudflare Pages・GitHub Pages |
+| デザイン・UI リソース | Figma・Tailwind CSS・shadcn/ui・Heroicons・Google Fonts |
+| API・データ | Public APIs リスト・JSONPlaceholder・Postman API Network |
+| 開発支援ツール（Web） | regex101・Excalidraw・CodePen・StackBlitz・readme.so |
+| ニュース・トレンド | Hacker News・daily.dev・JavaScript Weekly・GitHub Trending |
+
+---
+
+### [13 - 開発者向け SNS・情報発信ガイド](13-sns-guide.md)
+
+開発者がフォロー・参加すべき SNS・動画・ポッドキャスト・コミュニティをまとめたガイド。
+どのレベルからでも参照できる独立したガイド。
+
+| トピック | 内容 |
+|---------|------|
+| X（Twitter） | フォローすべきアカウント・ハッシュタグ・活用法 |
+| YouTube | プログラミング学習チャンネル（日本語・英語） |
+| Discord | 開発者コミュニティ・OSS プロジェクトの公式サーバー |
+| Reddit | プログラミング系サブレディット |
+| LinkedIn | エンジニアのキャリア・ネットワーキング |
+| Bluesky・Threads・Mastodon | 新興 SNS のテックコミュニティ |
+| ポッドキャスト | テック系ポッドキャスト（日本語・英語） |
+| おすすめフォロー戦略 | 情報過多にならないための運用ルール |
 
 ---
 
@@ -160,21 +278,45 @@ Agent Teams で並列作業し、Agent SDK でプログラムから制御する�
 
 ---
 
+### [20 - 開発学習ロードマップ](20-learning-roadmap-guide.md)
+**初心者からプロフェッショナルへ**
+
+プログラミング未経験者が Claude Code エコシステムを活用して開発のプロフェッショナルになるまでの学習ロードマップ。全 7 フェーズで、本シリーズの全ガイド（00〜13）を体系的に学ぶ道筋を示す。
+
+| トピック | 内容 |
+|---------|------|
+| ロードマップ全体像 | 7 フェーズ・到達レベル・学習時間の目安 |
+| Phase 1〜2 | Mac 操作・VS Code・ターミナル・Claude Code の基礎 |
+| Phase 3〜4 | Git・GitHub・Python・Web アプリ・DB・API |
+| Phase 5〜6 | カスタマイズ・自動化・デプロイ・CI/CD・ポートフォリオ |
+| Phase 7 | スキル・マルチエージェント・フルスタック・チーム開発 |
+| キャリアパス | AI 時代の開発者キャリア・職種マップ・転職戦略 |
+| 学習習慣 | 挫折対策・Claude Code 活用学習法・継続のコツ |
+
+---
+
 ## 読み進め方
 
 ### 推奨ルート
+
+> **初心者の方へ**: まず [20 - 開発学習ロードマップ](20-learning-roadmap-guide.md) を読み、全体像を把握してから各ガイドに進むことをおすすめする。
 
 ```
 01（基本操作）→ 02（実践）→ 03（応用）→ 04（アプリ開発）→ 05（公開）→ 06（スキル）→ 07（マルチエージェント）
 ```
 
-- **00（VS Code）** はどのタイミングで読んでも OK。01 と並行して参照するのがおすすめ
+- **00（VS Code）**・**08（Finder）**・**09（Mac 基礎）**・**10（おすすめアプリ）**・**11（CLI ツール）**・**12（Web サイト）**・**13（SNS・情報発信）** はどのタイミングで読んでも OK。01 と並行して参照するのがおすすめ
 - 各ガイドの「はじめに」に前提条件と関連ガイドへのリンクがあるので、順番通りでなくても前後関係がわかる
 
 ### 目的別ショートカット
 
 | やりたいこと | 読むべきガイド |
 |------------|-------------|
+| Mac の基本操作を知りたい | 09 |
+| Mac に便利なアプリを入れたい | 10 |
+| ターミナルをもっと便利にしたい | 11 |
+| 開発に役立つサイトを知りたい | 12 |
+| 開発者向け SNS を知りたい | 13 |
 | Claude Code をとりあえず動かしたい | 01 |
 | Git / GitHub を使いたい | 02 |
 | 毎回同じ指示を打つのが面倒 | 03（カスタムコマンド・フック） |
@@ -182,6 +324,9 @@ Agent Teams で並列作業し、Agent SDK でプログラムから制御する�
 | 作ったツールを公開したい | 05 |
 | Claude Code に専門知識を持たせたい | 06 |
 | 大規模タスクを並列で処理したい | 07 |
+| 学習の全体像とロードマップを知りたい | 20 |
+| AI 時代のキャリアパスを知りたい | 20（セクション 10） |
+| 学習リソースをフェーズ別に探したい | 20（セクション 9） |
 
 ### VBA との対比で全体を捉える
 
