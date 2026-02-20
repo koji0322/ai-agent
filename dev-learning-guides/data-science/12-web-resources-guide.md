@@ -9,7 +9,7 @@
 - **前提**: Python の基礎を理解していること
 - **関連ガイド**: [10 - DS 向け Mac アプリガイド](10-mac-apps-guide.md)、[11 - DS 向けターミナル CLI ツールガイド](11-terminal-tools-guide.md)
 
-> **元ガイドとの棲み分け**: [12 - おすすめ Web サイトガイド](../12-web-resources-guide.md) は **Web 開発者向け** のサイト（MDN・freeCodeCamp・Vercel 等）を紹介している。
+> **元ガイドとの棲み分け**: [04 - おすすめ Web サイトガイド](../04-web-resources-guide.md) は **Web 開発者向け** のサイト（MDN・freeCodeCamp・Vercel 等）を紹介している。
 > このガイドでは **データサイエンス・機械学習に特化した Web サイト** に絞って紹介する。
 
 > **無料サイトを優先** して紹介する。有料の場合は料金欄に明記する。

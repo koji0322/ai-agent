@@ -4,16 +4,20 @@
 
 このガイドは **複数の Claude Code インスタンスを協調させ、プログラムから Claude Code を制御するための自分用リファレンス** です。
 
-- **想定読者**: [Claude Code スキル・プラグインガイド](06-claude-code-skills-guide.md) を読み終え、スキル・プラグインを自作できる
+- **想定読者**: プログラミング初心者 — [Claude Code スキル・プラグインガイド](15-claude-code-skills-guide.md) を読み終え、スキル・プラグインを自作できる
 - **ゴール**: Agent Teams で並列作業ができる。Agent SDK でプログラムから Claude Code を制御できる。状況に応じた使い分けを判断できる
 - **関連ガイド**:
-  - [Claude Code 応用・自動化ガイド](03-claude-code-advanced-guide.md) — カスタマイズ・自動化（レベル 3）
-  - [Claude Code スキル・プラグインガイド](06-claude-code-skills-guide.md) — スキル・プラグイン（レベル 6）
+  - [Claude Code 応用・自動化ガイド](12-claude-code-advanced-guide.md) — カスタマイズ・自動化（レベル 3）
+  - [Claude Code スキル・プラグインガイド](15-claude-code-skills-guide.md) — スキル・プラグイン（レベル 6）
 
 > レベル 6 までは **1 つの Claude Code セッション** が作業の単位だった。
 > このガイドでは、**複数の Claude Code を協調させる Agent Teams** と、
 > **プログラムから Claude Code を制御する Agent SDK** を使い、より大規模なタスクに対応する。
-> VBA の枠を完全に超える段階。複数のマクロを連携させてワークフロー全体を自動化し、さらに Excel の外からマクロを呼び出すイメージ。
+
+<details><summary>VBA 経験者向けの補足</summary>
+
+VBA の枠を完全に超える段階です。複数のマクロを連携させてワークフロー全体を自動化し、さらに Excel の外からマクロを呼び出すイメージです。
+</details>
 
 > **注意**: Agent Teams は実験的機能（2026 年 2 月時点）。仕様が変更される可能性がある。
 

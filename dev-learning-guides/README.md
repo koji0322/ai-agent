@@ -1,44 +1,58 @@
-# Claude Code 学習ガイドシリーズ
+# 開発学習ガイドシリーズ
 
-Mac で Claude Code を使いこなすための自分用リファレンス集。
-VBA（Excel VBE）の経験をベースに、ターミナル操作からマルチエージェントまで段階的に学べる構成。
+Mac で Claude Code を中心に、プログラミングの基礎から実践的な開発スキルまで段階的に学べるガイド集。
 
 ---
 
 ## 対象読者
 
-- VBA（Excel VBE）は使える
-- ターミナル操作やモダンな開発ツールは不慣れ
+- プログラミング初心者
 - Mac ユーザー
+- Claude Code を活用して開発を学びたい方
 
 ## ガイドの全体像
 
 ```
-00  VS Code           エディタの使い方（どのレベルからでも参照）
-08  Mac Finder        ファイル管理の基本（どのレベルからでも参照）
-09  Mac 基礎操作       Mac の画面・キーボード・アプリ管理（どのレベルからでも参照）
-10  Mac おすすめアプリ   開発・生産性向上アプリの導入（どのレベルからでも参照）
-11  ターミナル CLI ツール  モダンなコマンド代替・開発支援ツール（どのレベルからでも参照）
-12  おすすめ Web サイト   学習・AI・開発支援の定番サイト（どのレベルからでも参照）
-13  SNS・情報発信        X・YouTube・Discord・ポッドキャスト（どのレベルからでも参照）
-    ─────────────────────────────────────────────
-01  基本操作           ターミナルと Claude Code の基礎
-02  実践               Git・GitHub・開発フロー
-03  応用・自動化        設定・コマンド・フック・MCP
-04  アプリ開発          Python・Web アプリ・DB・API
-05  公開・運用          デプロイ・CI/CD・保守
-06  スキル・プラグイン   Claude Code の能力を拡張
-07  マルチエージェント   複数 AI の協調・SDK
-    ─────────────────────────────────────────────
-20  学習ロードマップ     初心者からプロフェッショナルへの道筋
+=== 環境・基盤ガイド (00-05) ===
+00  VS Code 基本操作           エディタの使い方
+01  Mac 基礎操作               Mac の画面・キーボード・Finder・アプリ管理
+02  Mac おすすめアプリ          開発・生産性向上アプリの導入
+03  ターミナル CLI ツール       モダンなコマンド代替・開発支援ツール
+04  おすすめ Web サイト         学習・AI・開発支援の定番サイト
+05  SNS・情報発信              X・YouTube・Discord・ポッドキャスト
+
+=== Claude Code 本編 (10-16) ===
+10  基本操作                   ターミナルと Claude Code の基礎
+11  実践                       Git・GitHub・開発フロー
+12  応用・自動化               設定・コマンド・フック・MCP
+13  アプリ開発                 Python・Web アプリ・DB・API
+14  公開・運用                 デプロイ・CI/CD・保守
+15  スキル・プラグイン          Claude Code の能力を拡張
+16  マルチエージェント          複数 AI の協調・SDK
+
+=== 新規テーマ (20-27) ===
+20  セキュリティ基礎            API キー管理・SSH・OWASP Top 10
+21  テスト入門                 pytest・TDD・カバレッジ・CI 連携
+22  Docker 入門                コンテナ・Dockerfile・docker-compose
+23  Web 開発基礎               HTML/CSS/JS・React・Next.js
+24  データベース入門            SQLite・SQL・PostgreSQL・ORM
+25  API 設計・連携             REST・FastAPI・Claude API
+26  Python 環境構築            pyenv・venv・pip・VS Code 設定
+27  データ分析入門             pandas・matplotlib・Jupyter・CSV/Excel
+
+=== ロードマップ (30) ===
+30  開発学習ロードマップ        初心者からプロフェッショナルへの道筋
 ```
+
+---
 
 ## 各ガイドの内容
 
-### [00 - VS Code 基本操作ガイド](00-vscode-guide.md)
+### 環境・基盤ガイド (00-05)
+
+#### [00 - VS Code 基本操作ガイド](00-vscode-guide.md)
 
 VS Code のインストールから基本操作、Claude Code との連携まで。
-どのレベルからでも参照できる独立したガイド。
 
 | トピック | 内容 |
 |---------|------|
@@ -50,45 +64,25 @@ VS Code のインストールから基本操作、Claude Code との連携まで
 
 ---
 
-### [08 - Mac Finder 基本操作ガイド](08-mac-finder-guide.md)
+#### [01 - Mac 基礎操作ガイド](01-mac-basics-guide.md)
 
-Mac のファイル管理アプリ Finder の使い方。Windows エクスプローラーとの違いを中心に解説。
-どのレベルからでも参照できる独立したガイド。
-
-| トピック | 内容 |
-|---------|------|
-| 画面構成 | ツールバー・サイドバー・メインエリア・パスバー |
-| 基本操作 | 移動・コピー・名前変更・削除・クイックルック |
-| ナビゲーション | フォルダ移動・パス指定・サイドバー活用 |
-| 検索 | Finder 内検索・Spotlight |
-| おすすめ設定 | パスバー表示・拡張子表示・隠しファイル |
-| ターミナル連携 | `open .`・パスのドラッグ&ドロップ |
-
----
-
-### [09 - Mac 基礎操作ガイド](09-mac-basics-guide.md)
-
-Mac の画面構成・キーボード・トラックパッド・アプリ管理・システム設定まで、Mac の基礎知識を体系的にまとめたガイド。
-どのレベルからでも参照できる独立したガイド。
+Mac の画面構成・キーボード・Finder・トラックパッド・アプリ管理・システム設定を体系的にまとめたガイド。
 
 | トピック | 内容 |
 |---------|------|
-| 画面構成 | メニューバー・Dock・デスクトップ・通知センター |
-| キーボード | 修飾キーの対応（Ctrl→Cmd）・記号の読み方・主要ショートカット |
-| トラックパッド | ジェスチャー操作（スクロール・ズーム・3本指スワイプ） |
-| アプリの基本 | 起動・切替（Cmd+Tab）・終了（×で終了しない）・強制終了 |
+| 画面構成 | メニューバー・Dock・デスクトップ |
+| キーボード | 修飾キー・主要ショートカット |
+| Finder | フォルダ構造・基本操作・ナビゲーション・おすすめ設定 |
+| トラックパッド | ジェスチャー操作 |
+| アプリの基本 | 起動・終了・インストール（App Store / dmg / Homebrew） |
 | Dock・Mission Control | 配置・仮想デスクトップ・Split View |
-| Spotlight・スクリーンショット | 万能ランチャー・画面キャプチャ・画面収録 |
-| インストール・設定 | App Store・dmg・Homebrew・おすすめ初期設定 |
 | セキュリティ・バックアップ | FileVault・Gatekeeper・Time Machine |
-| トラブルシューティング | フリーズ対処・ディスク容量・セーフモード |
 
 ---
 
-### [10 - Mac おすすめアプリガイド](10-mac-apps-guide.md)
+#### [02 - Mac おすすめアプリガイド](02-mac-apps-guide.md)
 
-Mac に導入すべき開発・生産性向上アプリをまとめたガイド。Homebrew での一括セットアップ方法も解説。
-どのレベルからでも参照できる独立したガイド。
+Mac に導入すべき開発・生産性向上アプリをまとめたガイド。
 
 | トピック | 内容 |
 |---------|------|
@@ -97,73 +91,58 @@ Mac に導入すべき開発・生産性向上アプリをまとめたガイド�
 | エディタ・IDE | VS Code・Cursor・CotEditor |
 | Git・GitHub | GitHub Desktop・GitKraken・gh CLI |
 | API・データベース | Postman・Bruno・TablePlus・DB Browser |
-| ブラウザ・開発ツール | Chrome（DevTools）・Firefox・Arc |
 | ウィンドウ管理・生産性 | Rectangle・Raycast・Clipy・Karabiner-Elements |
-| ドキュメント・メモ | Notion・Obsidian・Markdown エディタ |
-| その他の便利ツール | AppCleaner・The Unarchiver・Stats・Hidden Bar |
 
 ---
 
-### [11 - ターミナル CLI ツールガイド](11-terminal-tools-guide.md)
+#### [03 - ターミナル CLI ツールガイド](03-terminal-tools-guide.md)
 
 ターミナルで使うモダンな CLI ツール（コマンド代替・開発支援ツール）をまとめたガイド。
-どのレベルからでも参照できる独立したガイド。
 
 | トピック | 内容 |
 |---------|------|
-| モダンなコマンド代替 | eza(ls)・bat(cat)・fd(find)・ripgrep(grep)・sd(sed)・dust(du)・duf(df)・delta(diff) |
-| ファイル操作・検索 | fzf（あいまい検索）・tree・zoxide(cd)・trash-cli |
+| モダンなコマンド代替 | eza(ls)・bat(cat)・fd(find)・ripgrep(grep)・delta(diff) |
+| ファイル操作・検索 | fzf・tree・zoxide(cd)・trash-cli |
 | JSON・データ処理 | jq・yq・fx |
-| ネットワーク・HTTP | curl・wget・httpie・xh |
-| プロセス・システム監視 | htop・btop・procs・watch |
-| バージョン管理（言語） | mise(asdf後継)・nvm・fnm・pyenv |
+| ネットワーク・HTTP | curl・httpie・xh |
+| バージョン管理 | mise・nvm・fnm・pyenv |
 | Git 拡張 | lazygit・tig・git-delta |
-| Docker・コンテナ | Docker Desktop・lazydocker・dive |
-| その他の便利ツール | tldr・thefuck・neofetch・tokei・hyperfine |
 
 ---
 
-### [12 - おすすめ Web サイトガイド](12-web-resources-guide.md)
+#### [04 - おすすめ Web サイトガイド](04-web-resources-guide.md)
 
 開発者がブックマークしておくべき Web サイト・オンラインサービスをまとめたガイド。
-どのレベルからでも参照できる独立したガイド。
 
 | トピック | 内容 |
 |---------|------|
-| 公式ドキュメント・リファレンス | MDN・Python Docs・DevDocs・Can I Use |
-| 学習プラットフォーム | freeCodeCamp・The Odin Project・Codecademy・Udemy |
-| 技術コミュニティ・Q&A | Stack Overflow・GitHub Discussions・Qiita・Zenn・Dev.to |
-| AI サービス・ツール | Claude・ChatGPT・GitHub Copilot・Perplexity・v0 |
-| ホスティング・デプロイ | Vercel・Netlify・Render・Cloudflare Pages・GitHub Pages |
-| デザイン・UI リソース | Figma・Tailwind CSS・shadcn/ui・Heroicons・Google Fonts |
-| API・データ | Public APIs リスト・JSONPlaceholder・Postman API Network |
-| 開発支援ツール（Web） | regex101・Excalidraw・CodePen・StackBlitz・readme.so |
-| ニュース・トレンド | Hacker News・daily.dev・JavaScript Weekly・GitHub Trending |
+| 公式ドキュメント | MDN・Python Docs・DevDocs |
+| 学習プラットフォーム | freeCodeCamp・The Odin Project・Codecademy |
+| AI サービス | Claude・ChatGPT・GitHub Copilot・Perplexity |
+| ホスティング・デプロイ | Vercel・Netlify・Render・GitHub Pages |
+| 開発支援ツール | regex101・Excalidraw・CodePen・StackBlitz |
 
 ---
 
-### [13 - 開発者向け SNS・情報発信ガイド](13-sns-guide.md)
+#### [05 - SNS・情報発信ガイド](05-sns-guide.md)
 
 開発者がフォロー・参加すべき SNS・動画・ポッドキャスト・コミュニティをまとめたガイド。
-どのレベルからでも参照できる独立したガイド。
 
 | トピック | 内容 |
 |---------|------|
-| X（Twitter） | フォローすべきアカウント・ハッシュタグ・活用法 |
-| YouTube | プログラミング学習チャンネル（日本語・英語） |
-| Discord | 開発者コミュニティ・OSS プロジェクトの公式サーバー |
-| Reddit | プログラミング系サブレディット |
-| LinkedIn | エンジニアのキャリア・ネットワーキング |
-| Bluesky・Threads・Mastodon | 新興 SNS のテックコミュニティ |
-| ポッドキャスト | テック系ポッドキャスト（日本語・英語） |
-| おすすめフォロー戦略 | 情報過多にならないための運用ルール |
+| X（Twitter）・Bluesky | フォローすべきアカウント・ハッシュタグ |
+| YouTube | プログラミング学習チャンネル |
+| Discord・Reddit | 開発者コミュニティ |
+| ポッドキャスト | テック系ポッドキャスト |
 
 ---
 
-### [01 - Claude Code 基本操作ガイド](01-claude-code-guide.md)
+### Claude Code 本編 (10-16)
+
+#### [10 - Claude Code 基本操作ガイド](10-claude-code-guide.md)
 **レベル 1 — 道具の使い方を覚える**
 
-ターミナルの開き方から Claude Code のインストール・基本的な対話まで。ゼロからのスタート地点。
+ターミナルの開き方から Claude Code のインストール・基本的な対話まで。
 
 | トピック | 内容 |
 |---------|------|
@@ -176,7 +155,7 @@ Mac に導入すべき開発・生産性向上アプリをまとめたガイド�
 
 ---
 
-### [02 - Claude Code 実践ガイド](02-claude-code-practical-guide.md)
+#### [11 - Claude Code 実践ガイド](11-claude-code-practical-guide.md)
 **レベル 2 — 道具を使って仕事をする**
 
 Git でバージョン管理し、GitHub にバックアップし、実践的な開発フローで作業する。
@@ -185,17 +164,16 @@ Git でバージョン管理し、GitHub にバックアップし、実践的な
 |---------|------|
 | Git | `init` / `add` / `commit` の 3 コマンド・履歴確認・差分確認・復元 |
 | GitHub | アカウント作成・SSH 設定・`push` でクラウド保管 |
-| プロジェクトの始め方 | フォルダ構成・CLAUDE.md 整備・`.gitignore` |
 | 開発フロー | 調査 → 計画 → 実装 → 確認 → 記録の 5 フェーズ |
 | 拡張思考モード | `Alt+T` で切り替え・使い分けの目安 |
 | デバッグ | エラーメッセージの貼り付け・スクリーンショット活用 |
 
 ---
 
-### [03 - Claude Code 応用・自動化ガイド](03-claude-code-advanced-guide.md)
+#### [12 - Claude Code 応用・自動化ガイド](12-claude-code-advanced-guide.md)
 **レベル 3 — 道具を自分好みにカスタマイズする**
 
-設定ファイル・カスタムコマンド・フック・MCP で Claude Code を自分の作業スタイルに最適化する。
+設定ファイル・カスタムコマンド・フック・MCP で Claude Code を最適化する。
 
 | トピック | 内容 |
 |---------|------|
@@ -205,19 +183,18 @@ Git でバージョン管理し、GitHub にバックアップし、実践的な
 | フック | `PreToolUse` / `PostToolUse` / `Notification` で自動化 |
 | MCP | 外部ツール連携・`.mcp.json` の設定 |
 | ヘッドレスモード | `claude -p` でワンショット実行・シェルスクリプト連携 |
-| ブランチ | 分岐・マージ・プルリクエスト |
 
 ---
 
-### [04 - Claude Code アプリケーション開発ガイド](04-claude-code-app-dev-guide.md)
+#### [13 - Claude Code アプリケーション開発ガイド](13-claude-code-app-dev-guide.md)
 **レベル 4 — 道具を使って「作品」を作る**
 
-VBA でやっていた作業を Python・Web アプリ・データベースで再現する。
+Python・Web アプリ・データベースで実用的なアプリケーションを開発する。
 
 | トピック | 内容 |
 |---------|------|
-| VBA → Python | Excel 読み書き・CSV 集計・ファイル一括処理 |
-| プロジェクト設計 | Claude Code との壁打ち・モジュール分割の判断 |
+| Python 基礎 | Excel 読み書き・CSV 集計・ファイル一括処理 |
+| プロジェクト設計 | Claude Code との壁打ち・モジュール分割 |
 | コマンドラインツール | `argparse` で引数受け取り |
 | Web アプリ | Streamlit（最も手軽）・Flask（本格的） |
 | データベース | SQLite の基本・SQL を Claude Code に書いてもらう |
@@ -226,7 +203,7 @@ VBA でやっていた作業を Python・Web アプリ・データベースで�
 
 ---
 
-### [05 - Claude Code 公開・運用ガイド](05-claude-code-deploy-guide.md)
+#### [14 - Claude Code 公開・運用ガイド](14-claude-code-deploy-guide.md)
 **レベル 5 — 作品を人に届け、維持する**
 
 作ったものを公開し、継続的に保守・改善するための仕組みを整える。
@@ -239,11 +216,10 @@ VBA でやっていた作業を Python・Web アプリ・データベースで�
 | 秘密情報管理 | `.env` / `.env.example` / `.gitignore` |
 | デプロイ | Streamlit Cloud・GitHub Pages・Render |
 | CI/CD | GitHub Actions でテスト自動実行 |
-| 保守サイクル | Issue 駆動の開発・バージョニング |
 
 ---
 
-### [06 - Claude Code スキル・プラグインガイド](06-claude-code-skills-guide.md)
+#### [15 - Claude Code スキル・プラグインガイド](15-claude-code-skills-guide.md)
 **レベル 6 — Claude Code 自体を拡張する**
 
 スキルとプラグインで専門知識を構造化し、再利用・共有可能にする。
@@ -253,45 +229,160 @@ VBA でやっていた作業を Python・Web アプリ・データベースで�
 | スキルとは | カスタムコマンドとの違い・自動発動の仕組み |
 | 3 層アーキテクチャ | メタデータ → 本文 → 補足資料の段階的読み込み |
 | スキル作成 | `SKILL.md` の書き方・YAML フロントマター |
-| 実用化 | 補足ファイル・実行スクリプトの同梱 |
 | 公式スキル | Excel・PowerPoint・Word・PDF |
 | プラグイン | フォルダ構成・`plugin.json`・名前空間・配布 |
 | フックの発展 | `SessionStart` / `UserPromptSubmit` / `prompt` タイプ |
 
 ---
 
-### [07 - Claude Code マルチエージェントガイド](07-claude-code-multi-agent-guide.md)
+#### [16 - Claude Code マルチエージェントガイド](16-claude-code-multi-agent-guide.md)
 **レベル 7 — 複数の AI を協調させる**
 
 Agent Teams で並列作業し、Agent SDK でプログラムから制御する。
 
 | トピック | 内容 |
 |---------|------|
-| サブエージェントの限界 | Agent Teams との比較 |
 | Agent Teams | 有効化・チームリード / チームメイト・共有タスクリスト |
 | チーム構成パターン | 並行開発・マルチ観点レビュー・仮説検証 |
 | 品質管理 | プラン承認・品質ゲート（フック連携） |
 | Agent SDK | Python / TypeScript からの制御・`query()` 関数 |
 | SDK 実用例 | 自動レビュー・CI/CD 連携・一括処理 |
-| Cowork | コーディング以外のナレッジワーク向け |
 | 使い分け | 状況別の最適アプローチ判断フロー |
 
 ---
 
-### [20 - 開発学習ロードマップ](20-learning-roadmap-guide.md)
-**初心者からプロフェッショナルへ**
+### 新規テーマ (20-27)
 
-プログラミング未経験者が Claude Code エコシステムを活用して開発のプロフェッショナルになるまでの学習ロードマップ。全 7 フェーズで、本シリーズの全ガイド（00〜13）を体系的に学ぶ道筋を示す。
+#### [20 - セキュリティ基礎ガイド](20-security-basics-guide.md)
+
+開発に必要なセキュリティの基礎知識。
 
 | トピック | 内容 |
 |---------|------|
-| ロードマップ全体像 | 7 フェーズ・到達レベル・学習時間の目安 |
-| Phase 1〜2 | Mac 操作・VS Code・ターミナル・Claude Code の基礎 |
-| Phase 3〜4 | Git・GitHub・Python・Web アプリ・DB・API |
-| Phase 5〜6 | カスタマイズ・自動化・デプロイ・CI/CD・ポートフォリオ |
-| Phase 7 | スキル・マルチエージェント・フルスタック・チーム開発 |
-| キャリアパス | AI 時代の開発者キャリア・職種マップ・転職戦略 |
-| 学習習慣 | 挫折対策・Claude Code 活用学習法・継続のコツ |
+| パスワード・アカウント管理 | パスワードマネージャー・2FA・SSH キー |
+| API キー管理 | `.env`・`.gitignore`・環境変数 |
+| Git とセキュリティ | シークレットのスキャン・git-secrets |
+| OWASP Top 10 | XSS・SQL インジェクション・CSRF |
+| 依存パッケージ | npm audit・pip audit・Dependabot |
+
+---
+
+#### [21 - テスト入門ガイド](21-testing-intro-guide.md)
+
+テストの書き方と自動化。
+
+| トピック | 内容 |
+|---------|------|
+| テストの種類 | ユニット・統合・E2E |
+| pytest | インストール・assert・fixture・parametrize |
+| TDD | Red-Green-Refactor サイクル |
+| カバレッジ | pytest-cov・レポートの見方 |
+| CI 連携 | GitHub Actions でテスト自動化 |
+
+---
+
+#### [22 - Docker 入門ガイド](22-docker-intro-guide.md)
+
+コンテナ技術の基礎。
+
+| トピック | 内容 |
+|---------|------|
+| コンテナの概念 | コンテナ vs VM・イメージ vs コンテナ |
+| 基本コマンド | run・ps・stop・rm・images |
+| Dockerfile | FROM・RUN・COPY・WORKDIR・CMD |
+| docker-compose | マルチコンテナ構成・Web + DB の例 |
+| Dev Containers | VS Code でコンテナ内開発 |
+
+---
+
+#### [23 - Web 開発基礎ガイド](23-web-basics-guide.md)
+
+Web 開発の基礎技術。
+
+| トピック | 内容 |
+|---------|------|
+| HTML/CSS/JS | 基本構文・セマンティック HTML・Flexbox |
+| DevTools | Elements・Console・Network タブ |
+| React | コンポーネント・JSX・props・state・hooks |
+| Next.js | ルーティング・SSR vs CSR・API ルート |
+| ビルドツール | Vite・バンドリング |
+
+---
+
+#### [24 - データベース入門ガイド](24-database-intro-guide.md)
+
+データベースの基礎。
+
+| トピック | 内容 |
+|---------|------|
+| DB の種類 | RDB vs NoSQL |
+| SQLite | Python での基本操作 |
+| SQL 基本 | SELECT・INSERT・UPDATE・DELETE・JOIN |
+| テーブル設計 | 主キー・外部キー・正規化 |
+| ORM | SQLAlchemy の基本・CRUD |
+| マイグレーション | Alembic の基本 |
+
+---
+
+#### [25 - API 設計・連携ガイド](25-api-guide.md)
+
+API の設計と利用。
+
+| トピック | 内容 |
+|---------|------|
+| HTTP の基礎 | メソッド・ステータスコード・ヘッダー |
+| REST API 設計 | リソースベース URL・CRUD マッピング |
+| FastAPI | パスパラメータ・リクエストボディ・自動ドキュメント |
+| 外部 API | requests ライブラリ・JSON 処理 |
+| Claude API | SDK・メッセージ API・ストリーミング |
+| API 認証 | API キー・OAuth・Bearer トークン |
+
+---
+
+#### [26 - Python 環境構築ガイド](26-python-setup-guide.md)
+
+Python 環境のセットアップ。
+
+| トピック | 内容 |
+|---------|------|
+| バージョン管理 | pyenv・mise でバージョンを切り替え |
+| 仮想環境 | venv で依存パッケージを分離 |
+| パッケージ管理 | pip install・requirements.txt |
+| VS Code 設定 | Python 拡張・インタープリタ選択・デバッグ |
+| Claude Code 連携 | Python スクリプト生成・CLAUDE.md 設定 |
+
+---
+
+#### [27 - データ分析入門ガイド](27-data-analysis-guide.md)
+
+Python でのデータ分析の基礎。
+
+| トピック | 内容 |
+|---------|------|
+| pandas | DataFrame・CSV/Excel 読み込み・集計 |
+| matplotlib | 棒グラフ・折れ線グラフ・円グラフ |
+| Jupyter Notebook | セル操作・VS Code 連携 |
+| 実践 | データクリーニング・可視化・結果保存 |
+| Claude Code 連携 | データ分析の依頼・コード生成 |
+
+---
+
+### ロードマップ (30)
+
+#### [30 - 開発学習ロードマップ](30-learning-roadmap-guide.md)
+**初心者からプロフェッショナルへ**
+
+プログラミング未経験者が Claude Code エコシステムを活用して開発のプロフェッショナルになるまでの学習ロードマップ。
+
+| トピック | 内容 |
+|---------|------|
+| ロードマップ全体像 | フェーズ別の到達レベル・学習時間の目安 |
+| 環境構築フェーズ | Mac 操作・VS Code・ターミナル・Claude Code の基礎 |
+| 実践フェーズ | Git・GitHub・Python・Web アプリ・DB・API |
+| 応用フェーズ | カスタマイズ・自動化・デプロイ・CI/CD |
+| 専門フェーズ | セキュリティ・テスト・Docker・Web 開発・DB・API 設計 |
+| マスターフェーズ | スキル・マルチエージェント・フルスタック・チーム開発 |
+| キャリアパス | AI 時代の開発者キャリア・職種マップ |
 
 ---
 
@@ -299,36 +390,46 @@ Agent Teams で並列作業し、Agent SDK でプログラムから制御する�
 
 ### 推奨ルート
 
-> **初心者の方へ**: まず [20 - 開発学習ロードマップ](20-learning-roadmap-guide.md) を読み、全体像を把握してから各ガイドに進むことをおすすめする。
+> **初心者の方へ**: まず [30 - 開発学習ロードマップ](30-learning-roadmap-guide.md) を読み、全体像を把握してから各ガイドに進むことをおすすめします。
 
 ```
-01（基本操作）→ 02（実践）→ 03（応用）→ 04（アプリ開発）→ 05（公開）→ 06（スキル）→ 07（マルチエージェント）
+環境構築:    00（VS Code）→ 01（Mac 基礎）
+Claude Code: 10（基本）→ 11（実践）→ 12（応用）→ 13（アプリ開発）→ 14（公開）→ 15（スキル）→ 16（マルチエージェント）
+新規テーマ:  20〜27 は興味・必要に応じていつでも
 ```
 
-- **00（VS Code）**・**08（Finder）**・**09（Mac 基礎）**・**10（おすすめアプリ）**・**11（CLI ツール）**・**12（Web サイト）**・**13（SNS・情報発信）** はどのタイミングで読んでも OK。01 と並行して参照するのがおすすめ
-- 各ガイドの「はじめに」に前提条件と関連ガイドへのリンクがあるので、順番通りでなくても前後関係がわかる
+- **00〜05**（環境・基盤ガイド）はどのタイミングで読んでも OK
+- **20〜27**（新規テーマ）は独立しているので、必要になったときに参照
+- 各ガイドの「はじめに」に前提条件と関連ガイドへのリンクあり
 
 ### 目的別ショートカット
 
 | やりたいこと | 読むべきガイド |
 |------------|-------------|
-| Mac の基本操作を知りたい | 09 |
-| Mac に便利なアプリを入れたい | 10 |
-| ターミナルをもっと便利にしたい | 11 |
-| 開発に役立つサイトを知りたい | 12 |
-| 開発者向け SNS を知りたい | 13 |
-| Claude Code をとりあえず動かしたい | 01 |
-| Git / GitHub を使いたい | 02 |
-| 毎回同じ指示を打つのが面倒 | 03（カスタムコマンド・フック） |
-| Python で Excel 集計を自動化したい | 04 |
-| 作ったツールを公開したい | 05 |
-| Claude Code に専門知識を持たせたい | 06 |
-| 大規模タスクを並列で処理したい | 07 |
-| 学習の全体像とロードマップを知りたい | 20 |
-| AI 時代のキャリアパスを知りたい | 20（セクション 10） |
-| 学習リソースをフェーズ別に探したい | 20（セクション 9） |
+| Mac の基本操作を知りたい | [01](01-mac-basics-guide.md) |
+| Mac に便利なアプリを入れたい | [02](02-mac-apps-guide.md) |
+| ターミナルをもっと便利にしたい | [03](03-terminal-tools-guide.md) |
+| 開発に役立つサイトを知りたい | [04](04-web-resources-guide.md) |
+| 開発者向け SNS を知りたい | [05](05-sns-guide.md) |
+| Claude Code をとりあえず動かしたい | [10](10-claude-code-guide.md) |
+| Git / GitHub を使いたい | [11](11-claude-code-practical-guide.md) |
+| 毎回同じ指示を打つのが面倒 | [12](12-claude-code-advanced-guide.md)（カスタムコマンド・フック） |
+| Python でアプリを作りたい | [13](13-claude-code-app-dev-guide.md) |
+| 作ったツールを公開したい | [14](14-claude-code-deploy-guide.md) |
+| Claude Code に専門知識を持たせたい | [15](15-claude-code-skills-guide.md) |
+| 大規模タスクを並列で処理したい | [16](16-claude-code-multi-agent-guide.md) |
+| セキュリティの基礎を知りたい | [20](20-security-basics-guide.md) |
+| テストの書き方を学びたい | [21](21-testing-intro-guide.md) |
+| Docker を始めたい | [22](22-docker-intro-guide.md) |
+| Web 開発を始めたい | [23](23-web-basics-guide.md) |
+| データベースを学びたい | [24](24-database-intro-guide.md) |
+| API を設計・利用したい | [25](25-api-guide.md) |
+| Python の環境を構築したい | [26](26-python-setup-guide.md) |
+| データ分析を始めたい | [27](27-data-analysis-guide.md) |
+| 学習の全体像とロードマップを知りたい | [30](30-learning-roadmap-guide.md) |
 
-### VBA との対比で全体を捉える
+<details>
+<summary>VBA 経験者向けの対比表</summary>
 
 | レベル | VBA でやっていたこと | このシリーズで学ぶこと |
 |-------|-------------------|-------------------|
@@ -339,3 +440,13 @@ Agent Teams で並列作業し、Agent SDK でプログラムから制御する�
 | 5 | ツールを共有フォルダで配布・保守 | GitHub で公開・CI/CD で自動テスト・保守 |
 | 6 | 汎用アドインを整備して社内配布 | スキル・プラグインで知識を構造化・共有 |
 | 7 | （VBA の枠を超える） | 複数 AI の協調・SDK でパイプライン構築 |
+
+</details>
+
+---
+
+## データサイエンティスト向けガイド
+
+データサイエンス・機械学習に特化したガイドシリーズは [data-science/](data-science/) ディレクトリに収録しています。
+
+詳細は [data-science/README.md](data-science/README.md) を参照してください。

@@ -2,28 +2,46 @@
 
 ## 0. はじめに
 
-このガイドは **Claude Code を開発パートナーとして、実際に動くアプリケーションを作るための自分用リファレンス** です。
+このガイドは **Claude Code を開発パートナーとして、実際に動くアプリケーションを作るための学習ガイド** です。
 
-- **想定読者**: [Claude Code 応用・自動化ガイド](03-claude-code-advanced-guide.md) を読み終え、Claude Code のカスタマイズや自動化ができる
-- **ゴール**: VBA で行っていた作業を現代的な技術で再現し、コマンドラインツール・Web アプリ・データベース連携を体験する
+- **想定読者**: プログラミング初心者（[Claude Code 応用・自動化ガイド](12-claude-code-advanced-guide.md) を読み終え、Claude Code のカスタマイズや自動化ができる）
+- **ゴール**: コマンドラインツール・Web アプリ・データベース連携を体験し、実際に動くアプリケーションを作れるようになる
 - **関連ガイド**:
-  - [Claude Code 実践ガイド](02-claude-code-practical-guide.md) — Git・開発フロー（レベル 2）
-  - [Claude Code 応用・自動化ガイド](03-claude-code-advanced-guide.md) — カスタマイズ・自動化（レベル 3）
-  - [Claude Code 公開・運用ガイド](05-claude-code-deploy-guide.md) — 公開・運用（次のステップ）
+  - [Claude Code 実践ガイド](11-claude-code-practical-guide.md) — Git・開発フロー（レベル 2）
+  - [Claude Code 応用・自動化ガイド](12-claude-code-advanced-guide.md) — カスタマイズ・自動化（レベル 3）
+  - [Claude Code 公開・運用ガイド](14-claude-code-deploy-guide.md) — 公開・運用（次のステップ）
+  - [セキュリティ基礎ガイド](20-security-basics-guide.md) — API キーの安全な管理
+  - [テスト入門ガイド](21-testing-intro-guide.md) — テストの書き方
+  - [Docker 入門ガイド](22-docker-intro-guide.md) — 環境構築の基礎
+  - [Web 基礎ガイド](23-web-basics-guide.md) — Web アプリの仕組み
+  - [データベース入門ガイド](24-database-intro-guide.md) — データベースの使い方
+  - [API ガイド](25-api-guide.md) — API の使い方
 
-> レベル 1〜3 は「Claude Code 自体の操作スキル」を高める内容だった。
-> このガイドでは視点を切り替え、**「Claude Code を開発パートナーとして、実際に動くものを作る」** ことに焦点を当てる。
-> VBA で例えると、VBE の使い方を覚えた段階から、実際に **Excel アドインや独立したツールを開発する** 段階への移行。
+> レベル 1〜3 は「Claude Code 自体の操作スキル」を高める内容でした。
+> このガイドでは視点を切り替え、**「Claude Code を開発パートナーとして、実際に動くものを作る」** ことに焦点を当てます。
+> プログラミングの基礎を学んだ段階から、実際に **実用的なツールやアプリケーションを開発する** 段階への移行です。
 
 ---
 
-## 1. VBA の「あの作業」を Python で再現する
+## 1. データ処理の基本を Python で学ぶ
 
-VBA ユーザーにとって最も親しみやすい入口。「Excel マクロでやっていたこと」は Python でもできる。
+プログラミング初心者にとって最も親しみやすい入口。「Excel でやっていたこと」は Python でもできます。
 
 ### Excel ファイルの読み書き
 
-VBA で `Range("A1").Value` と書いていた操作は、Python では `openpyxl` や `pandas` というライブラリで行う。
+Excel の操作は、Python では `openpyxl` や `pandas` というライブラリで行います。
+
+| Excel での操作 | Python（pandas） |
+|-----|-----------------|
+| セル A1 の値を読む | `df.iloc[0, 0]` |
+| i 行目の 1 列目を読む | `df.iloc[i-1, 0]` |
+| セル範囲 A1:C10 を選択 | `df.iloc[0:10, 0:3]` |
+| 列全体の合計を計算 | `df["A"].sum()` |
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA で `Range("A1").Value` と書いていた操作は、Python の pandas では `df.iloc[0, 0]` に相当します。
 
 | VBA | Python（pandas） |
 |-----|-----------------|
@@ -32,11 +50,12 @@ VBA で `Range("A1").Value` と書いていた操作は、Python では `openpyx
 | `Range("A1:C10")` | `df.iloc[0:10, 0:3]` |
 | `WorksheetFunction.Sum(Range("A:A"))` | `df["A"].sum()` |
 
+</details>
+
 ### Claude Code への指示例
 
 ```
-あなた: 「data/sales.xlsx を読み込んで、月ごとの売上合計を計算する Python スクリプトを作って。
-        VBA の WorksheetFunction.Sum に相当する処理を pandas で書いて」
+あなた: 「data/sales.xlsx を読み込んで、月ごとの売上合計を計算する Python スクリプトを作って」
 
 Claude: pandas を使って実装します...
 ```
@@ -46,20 +65,29 @@ Claude: pandas を使って実装します...
 ```python
 import pandas as pd
 
-# CSV を読み込む（VBA の QueryTable.Add に相当）
+# CSV を読み込む
 df = pd.read_csv("data/sales.csv")
 
-# 月ごとの売上合計（VBA の SUMIF に相当）
+# 月ごとの売上合計を計算
 monthly = df.groupby("月")["売上"].sum()
 print(monthly)
 ```
 
-> VBA では何十行も書いていた集計処理が、Python + pandas では数行で書ける。
-> コードを覚える必要はない。Claude Code に「VBA でやっていた○○と同じ処理を Python で書いて」と伝えれば書いてくれる。
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+CSV の読み込みは VBA の `QueryTable.Add` に相当します。
+月ごとの売上合計は VBA の `SUMIF` に相当する処理です。
+
+VBA では何十行も書いていた集計処理が、Python + pandas では数行で書けます。
+
+</details>
+
+> コードを覚える必要はありません。Claude Code に「Excel でやっていた○○と同じ処理を Python で書いて」と伝えれば書いてくれます。
 
 ### ファイルの一括処理
 
-VBA では `Dir` 関数でファイルをループしていた処理:
+複数のファイルを一括で処理する場合も、Claude Code に依頼できます。
 
 ```
 あなた: 「data フォルダ内の全 CSV ファイルを読み込んで、1 つのファイルに統合して」
@@ -67,13 +95,27 @@ VBA では `Dir` 関数でファイルをループしていた処理:
 Claude: glob と pandas を使って実装します...
 ```
 
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA では `Dir` 関数でファイルをループしていた処理に相当します。
+
+</details>
+
 ---
 
 ## 2. プロジェクトの設計を Claude Code と一緒に考える
 
 ### いきなりコードを書かない
 
-VBA では「とりあえず標準モジュールに書き始める」ことが多かったが、プロジェクト開発では **先に設計を考える** と後で楽になる。
+プロジェクト開発では **先に設計を考える** と後で楽になります。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA では「とりあえず標準モジュールに書き始める」ことが多かったかもしれませんが、プロジェクト開発では先に設計を考えることが重要です。
+
+</details>
 
 ### Claude Code に壁打ちしてもらう
 
@@ -106,7 +148,7 @@ Claude: 以下の構成を提案します。
 | 中くらい（100〜500 行） | 機能ごとに 3〜5 ファイル | ツールやユーティリティ |
 | 大きい（500 行〜） | パッケージ構成 | Web アプリやサービス |
 
-> VBA で「標準モジュール 1 つに 1000 行書いて、どこに何があるかわからなくなった」経験があるなら、早めの分割がおすすめ。
+> コードが長くなってきたら、早めに機能ごとにファイルを分割することをおすすめします。1 つのファイルに全部書くと、後で「どこに何があるかわからなくなる」問題が起きやすくなります。
 
 ### プランモードで設計 → 承認 → 実装
 
@@ -130,14 +172,21 @@ Claude: 実装計画:
 
 ### コマンドラインツールとは
 
-ターミナルから実行して結果を得るプログラム。最もシンプルなアプリケーション形態。
+ターミナルから実行して結果を得るプログラム。最もシンプルなアプリケーション形態です。
 
 ```bash
 # 実行例
 python src/main.py data/sales.csv --month 2026-01
 ```
 
-> VBA では `InputBox` でユーザーからの入力を受けていた。コマンドラインツールでは、実行時に引数として渡す。
+> コマンドラインツールでは、ユーザーからの入力を実行時の引数として渡します。GUI を作る必要がないので、最も手軽にツールを作成できます。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA では `InputBox` でユーザーからの入力を受けていましたが、コマンドラインツールでは実行時に引数として渡します。
+
+</details>
 
 ### 引数の受け取り
 
@@ -178,7 +227,19 @@ Claude: python src/main.py data/sales.csv --month 2026-01 を実行します。
 
 ### Web アプリとは
 
-**ブラウザで動くアプリケーション**。VBA のユーザーフォームに相当するものを、ブラウザの中で動かすイメージ。
+**ブラウザで動くアプリケーション**。デスクトップアプリと違い、URL を共有すれば誰でも使えます。
+
+| デスクトップアプリ | Web アプリ |
+|-------------------|----------|
+| 特定のソフト（Excel など）で動く | ブラウザで動く |
+| 自分の PC でしか使えない | URL を共有すれば誰でも使える |
+| インストールが必要 | ブラウザがあればすぐ使える |
+| ボタンクリックでローカルのコードが動く | ボタンクリックでサーバー側のコードが動く |
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA のユーザーフォームに相当するものを、ブラウザの中で動かすイメージです。
 
 | VBA ユーザーフォーム | Web アプリ |
 |-------------------|----------|
@@ -186,6 +247,8 @@ Claude: python src/main.py data/sales.csv --month 2026-01 を実行します。
 | 自分の PC でしか使えない | URL を共有すれば誰でも使える |
 | TextBox, ComboBox などの部品 | HTML の input, select などの部品 |
 | ボタンクリックで VBA コードが動く | ボタンクリックで Python（サーバー側）が動く |
+
+</details>
 
 ### 最も手軽な方法: Streamlit
 
@@ -205,7 +268,7 @@ import pandas as pd
 
 st.title("売上集計ダッシュボード")
 
-# ファイルアップロード（VBA の Application.GetOpenFilename に相当）
+# ファイルアップロード
 uploaded_file = st.file_uploader("CSV ファイルを選択", type="csv")
 
 if uploaded_file:
@@ -217,6 +280,13 @@ if uploaded_file:
     st.bar_chart(monthly)
 ```
 
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+`st.file_uploader()` は VBA の `Application.GetOpenFilename` に相当する機能です。
+
+</details>
+
 実行:
 
 ```bash
@@ -224,6 +294,8 @@ streamlit run app.py
 ```
 
 ブラウザが自動で開き、アプリが表示される。
+
+> Web アプリの仕組みについて詳しくは [Web 基礎ガイド](23-web-basics-guide.md) を参照してください。
 
 ### Flask（もう少し本格的に作りたいとき）
 
@@ -277,7 +349,7 @@ import sqlite3
 conn = sqlite3.connect("app.db")
 cursor = conn.cursor()
 
-# テーブル作成（VBA の Worksheets.Add に相当）
+# テーブル作成
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS customers (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -287,13 +359,22 @@ cursor.execute("""
     )
 """)
 
-# データ挿入（VBA の Range("A1").Value = "..." に相当）
+# データ挿入
 cursor.execute("INSERT INTO customers (name, email) VALUES (?, ?)", ("田中太郎", "tanaka@example.com"))
 
-# 検索（VBA の VLOOKUP / Find に相当）
+# 検索
 cursor.execute("SELECT * FROM customers WHERE name LIKE ?", ("%田中%",))
 results = cursor.fetchall()
 ```
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+- テーブル作成は VBA の `Worksheets.Add` に相当します
+- データ挿入は VBA の `Range("A1").Value = "..."` に相当します
+- 検索は VBA の `VLOOKUP` や `Find` に相当します
+
+</details>
 
 ### SQL を覚える必要はない
 
@@ -304,6 +385,8 @@ Claude Code に日本語で依頼すれば、SQL を書いてくれる。
 あなた: 「売上テーブルと顧客テーブルを結合して、顧客ごとの合計売上を計算して」
 ```
 
+> データベースについて詳しくは [データベース入門ガイド](24-database-intro-guide.md) を参照してください。
+
 ---
 
 ## 6. API を使って外部サービスと連携する
@@ -312,18 +395,27 @@ Claude Code に日本語で依頼すれば、SQL を書いてくれる。
 
 **他のサービスのデータや機能を、プログラムから利用するための窓口**。
 
-> VBA の対比: `CreateObject("MSXML2.XMLHTTP")` で Web サイトからデータを取得していたのと同じこと。Python ではもっと簡単に書ける。
+> 例えば、天気予報サービスや為替レートサービスが提供している API を使うと、プログラムから最新の情報を取得できます。
 
 ### requests ライブラリ
 
 ```python
 import requests
 
-# API からデータを取得（VBA の XMLHTTP.Send に相当）
+# API からデータを取得
 response = requests.get("https://api.example.com/data")
 data = response.json()
 print(data)
 ```
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA で `CreateObject("MSXML2.XMLHTTP")` を使って Web サイトからデータを取得していたのと同じことです。Python の `requests` ライブラリを使うと、もっと簡単に書けます。
+
+`requests.get()` は VBA の `XMLHTTP.Send` に相当します。
+
+</details>
 
 ### Claude Code への指示例
 
@@ -332,6 +424,8 @@ print(data)
 
 あなた: 「為替レート API を使って、USD/JPY のレートを取得して CSV に保存するスクリプトを作って」
 ```
+
+> API の使い方について詳しくは [API ガイド](25-api-guide.md) を参照してください。
 
 ### API キーの管理
 
@@ -366,6 +460,8 @@ api_key = os.getenv("API_KEY")
 あなた: 「.env ファイルに API キーを管理する仕組みを作って。.gitignore にも追加して」
 ```
 
+> API キーの安全な管理について詳しくは [セキュリティ基礎ガイド](20-security-basics-guide.md) を参照してください。
+
 ---
 
 ## 7. テストを書く
@@ -374,7 +470,16 @@ api_key = os.getenv("API_KEY")
 
 **コードが正しく動くことを自動で確認する仕組み**。
 
-> VBA の対比: イミディエイトウィンドウで `? MyFunction(10)` と入力して結果を手動確認していた。テストコードはそれを自動化する。手動だと「確認し忘れ」が起きるが、テストコードなら毎回同じチェックを確実に実行できる。
+> プログラムを修正するたびに、手動で動作確認するのは大変です。テストコードを書いておけば、自動で確認できるので「確認し忘れ」を防げます。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+イミディエイトウィンドウで `? MyFunction(10)` と入力して結果を手動確認していたのと同じことを、テストコードで自動化します。
+
+手動だと「確認し忘れ」が起きますが、テストコードなら毎回同じチェックを確実に実行できます。
+
+</details>
 
 ### pytest の基本
 
@@ -410,6 +515,8 @@ pytest tests/ -v
 
 Claude: pytest を使ってテストを作成します...
 ```
+
+> テストの書き方について詳しくは [テスト入門ガイド](21-testing-intro-guide.md) を参照してください。
 
 ### テストがあると安心してリファクタリングできる
 
@@ -456,3 +563,25 @@ pip freeze > requirements.txt
 ```
 
 > これも Claude Code に「仮想環境をセットアップして」と頼める。
+
+> 環境構築について詳しくは [Docker 入門ガイド](22-docker-intro-guide.md) も参照してください。より再現性の高い環境を構築できます。
+
+---
+
+## 9. 次のステップ
+
+このガイドで基本的なアプリケーション開発を体験しました。次は以下のガイドで学習を深めることをおすすめします。
+
+- [Claude Code 公開・運用ガイド](14-claude-code-deploy-guide.md) — アプリを公開・運用する方法
+- [Claude Code Skills ガイド](15-claude-code-skills-guide.md) — よく使う機能を Skills として登録
+- [Claude Code マルチエージェントガイド](16-claude-code-multi-agent-guide.md) — 複数の Claude エージェントを連携させる
+- [開発学習ロードマップ](30-learning-roadmap-guide.md) — さらなる学習の進め方
+
+各技術の詳細は、以下の専門ガイドを参照してください。
+
+- [セキュリティ基礎ガイド](20-security-basics-guide.md) — セキュリティの基本
+- [テスト入門ガイド](21-testing-intro-guide.md) — テスト駆動開発
+- [Docker 入門ガイド](22-docker-intro-guide.md) — コンテナ技術
+- [Web 基礎ガイド](23-web-basics-guide.md) — Web 技術の基礎
+- [データベース入門ガイド](24-database-intro-guide.md) — データベース設計
+- [API ガイド](25-api-guide.md) — API 設計と実装

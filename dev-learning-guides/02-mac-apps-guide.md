@@ -4,13 +4,13 @@
 
 このガイドは **Mac に導入すべきおすすめアプリを開発者目線でまとめた自分用リファレンス** です。
 
-- **想定読者**: Windows から Mac に移行した開発者。基本操作は覚えたので、便利なアプリを導入したい
+- **想定読者**: プログラミング初心者。Windows から Mac に移行した開発者。基本操作は覚えたので、便利なアプリを導入したい
 - **ゴール**: 開発・生産性向上に役立つアプリを知り、Homebrew で効率的にセットアップできるようになる
-- **前提**: [09 - Mac 基礎操作ガイド](09-mac-basics-guide.md) のアプリインストール方法（App Store / dmg / Homebrew）を理解していること
-- **関連ガイド**: [00 - VS Code ガイド](00-vscode-guide.md)、[09 - Mac 基礎操作ガイド](09-mac-basics-guide.md)
+- **前提**: [01 - Mac 基礎操作ガイド](01-mac-basics-guide.md) のアプリインストール方法（App Store / dmg / Homebrew）を理解していること
+- **関連ガイド**: [00 - VS Code ガイド](00-vscode-guide.md)、[01 - Mac 基礎操作ガイド](01-mac-basics-guide.md)
 
 > このガイドでは **無料アプリを優先** して紹介する。有料の場合は明記する。
-> インストール方法は `brew install --cask` を中心に記載。Homebrew の基本は [09 のインストールセクション](09-mac-basics-guide.md) を参照。
+> インストール方法は `brew install --cask` を中心に記載。Homebrew の基本は [01 のインストールセクション](01-mac-basics-guide.md) を参照。
 
 ### インストール方法の早見表
 
@@ -114,7 +114,7 @@ eval "$(starship init zsh)"
 
 ### Homebrew の活用
 
-Homebrew のインストール自体は [09 - Mac 基礎操作ガイド](09-mac-basics-guide.md) を参照。ここでは日常的な活用方法を紹介する。
+Homebrew のインストール自体は [01 - Mac 基礎操作ガイド](01-mac-basics-guide.md) を参照。ここでは日常的な活用方法を紹介する。
 
 #### よく使うコマンド
 
@@ -642,7 +642,7 @@ Mac 標準の Spotlight を大幅に強化するランチャーアプリ。
 ### ステップ 1: 基盤ツール
 
 ```bash
-# Homebrew をインストール（09 参照）後、基盤ツールを導入
+# Homebrew をインストール（01 参照）後、基盤ツールを導入
 brew install --cask iterm2
 brew install starship zsh-autosuggestions zsh-syntax-highlighting
 ```

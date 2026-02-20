@@ -4,16 +4,27 @@
 
 このガイドは **Claude Code をカスタマイズし、繰り返し作業を自動化するための自分用リファレンス** です。
 
-- **想定読者**: [Claude Code 実践ガイド](02-claude-code-practical-guide.md) を読み終え、Git・GitHub の基本操作と実践的な開発フローが身についている
+- **想定読者**: [Claude Code 実践ガイド](11-claude-code-practical-guide.md) を読み終え、Git・GitHub の基本操作と実践的な開発フローが身についている
 - **ゴール**: 設定ファイル・カスタムコマンド・フック・MCP・ヘッドレスモードを使いこなし、自分の作業スタイルに最適化された環境を構築する
 - **関連ガイド**:
-  - [Claude Code 基本操作ガイド](01-claude-code-guide.md) — 基本操作（レベル 1）
-  - [Claude Code 実践ガイド](02-claude-code-practical-guide.md) — Git・開発フロー（レベル 2）
-  - [Claude Code アプリケーション開発ガイド](04-claude-code-app-dev-guide.md) — アプリ開発（次のステップ）
+  - [Claude Code 基本操作ガイド](10-claude-code-guide.md) — 基本操作（レベル 1）
+  - [Claude Code 実践ガイド](11-claude-code-practical-guide.md) — Git・開発フロー（レベル 2）
+  - [Claude Code アプリケーション開発ガイド](13-claude-code-app-dev-guide.md) — アプリ開発（次のステップ）
+  - [Claude Code デプロイガイド](14-claude-code-deploy-guide.md) — デプロイと運用
+  - [Claude Code Skills ガイド](15-claude-code-skills-guide.md) — スキルシステムの活用
+  - [Claude Code マルチエージェントガイド](16-claude-code-multi-agent-guide.md) — 複数の AI エージェント連携
 
 > レベル 2 までは「Claude Code をそのまま使う」段階だった。
 > このガイドでは **「Claude Code を自分好みにカスタマイズし、定型作業を仕組み化する」** 段階に進む。
-> VBA で例えると、マクロを手動実行する段階から、`Workbook_Open` やユーザーフォームで自動化する段階への移行。
+>
+> 手動で操作する段階から、繰り返し作業を自動化してより効率的に開発できる段階への移行。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA で例えると、マクロを手動実行する段階から、`Workbook_Open` イベントやユーザーフォームで自動化する段階への移行に相当する。
+
+</details>
 
 ---
 
@@ -29,10 +40,20 @@ Claude Code の挙動は設定ファイルで制御できる。設定ファイ�
 | **プロジェクト共有設定** | `.claude/settings.json` | このプロジェクトのみ | Yes（チーム共有） |
 | **プロジェクトローカル設定** | `.claude/settings.local.json` | このプロジェクトのみ | No（個人環境） |
 
-> VBA の対比:
-> - ユーザー設定 = `PERSONAL.XLSB`（全ブック共通の個人設定）
-> - プロジェクト共有設定 = ブック内の `ThisWorkbook` モジュール（ブック固有、他の人にも共有される）
-> - プロジェクトローカル設定 = 自分の PC だけの環境設定
+> 簡単に言うと:
+> - ユーザー設定 = すべてのプロジェクトで使う個人の好み
+> - プロジェクト共有設定 = チームで共有するプロジェクトのルール
+> - プロジェクトローカル設定 = このプロジェクトでの自分だけの設定
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA での対比:
+- ユーザー設定 ≒ `PERSONAL.XLSB`（全ブック共通の個人設定）
+- プロジェクト共有設定 ≒ ブック内の `ThisWorkbook` モジュール（ブック固有、他の人にも共有される）
+- プロジェクトローカル設定 ≒ 自分の PC だけの環境設定
+
+</details>
 
 ### 設定ファイルの基本構造
 
@@ -124,7 +145,14 @@ CLAUDE.md は **複数の場所に置ける**。Claude Code は起動時にこ�
 
 毎回同じような指示を入力する手間を省く仕組み。マークダウンファイルを所定のフォルダに置くだけで、スラッシュコマンドとして使えるようになる。
 
-> VBA の対比: よく使うマクロをクイックアクセスツールバーに登録するようなもの。ワンクリック（ワンコマンド）で定型作業を実行できる。
+> よく使う操作をショートカット化するようなもの。ワンコマンドで定型作業を実行できる。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA で例えると、よく使うマクロをクイックアクセスツールバーに登録するようなもの。ワンクリック（ワンコマンド）で定型作業を実行できる点が似ている。
+
+</details>
 
 ### 作り方
 
@@ -214,7 +242,14 @@ mkdir -p ~/.claude/commands
 
 Claude Code の特定の操作に **連動して自動実行されるシェルコマンド**。
 
-> VBA の対比: `Workbook_BeforeSave` や `Workbook_Open` のようなイベント駆動マクロ。「ファイルを保存する前に自動でチェックを走らせる」といった動作を実現できる。
+> イベント駆動の自動化の仕組み。「ファイルを保存する前に自動でチェックを走らせる」「処理が完了したら通知する」といった動作を実現できる。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA の `Workbook_BeforeSave` や `Workbook_Open` のようなイベント駆動マクロに相当する。特定の操作に連動して自動処理を実行できる点が同じ。
+
+</details>
 
 ### フックの種類
 
@@ -292,7 +327,14 @@ jq -r '.tool_input.file_path'
 
 Claude Code に **新しい「道具」を追加する仕組み**。標準では持っていない能力を外部サーバー経由で拡張できる。
 
-> VBA の対比: Excel から外部の DLL やデータベースに接続するようなもの。Excel 単体ではできないことを、外部ツールとの連携で実現する。
+> アプリケーションに新しい機能を追加するプラグインのようなもの。単体ではできないことを、外部ツールとの連携で実現する。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA で Excel から外部の DLL やデータベースに接続するのに似ている。Excel 単体ではできないことを、外部ツールとの連携で実現する点が共通している。
+
+</details>
 
 ### 仕組みのイメージ
 
@@ -351,7 +393,14 @@ Claude Code  ←→  MCP サーバー  ←→  外部サービス
 
 **対話なしで** Claude Code を実行する方法。定型処理をバッチ実行するのに使う。
 
-> VBA の対比: タスクスケジューラから `.vbs` スクリプト経由で `Application.Run "マクロ名"` を実行するようなもの。人間が画面を見ていなくても自動で処理が走る。
+> 自動化スクリプトとして実行するモード。人間が画面を見ていなくても自動で処理が走る。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA でタスクスケジューラから `.vbs` スクリプト経由で `Application.Run "マクロ名"` を実行するのに似ている。人間の操作なしで自動実行できる点が共通している。
+
+</details>
 
 ### 基本的な使い方
 
@@ -439,7 +488,14 @@ claude /resume
 
 レベル 2 では `main` ブランチだけで作業していた。ブランチを使うと、**本体に影響を与えずに実験できる**。
 
-> VBA の対比: ブックをコピーして実験 → うまくいったら本体に反映。Git のブランチはこの「コピーして実験」をより軽量に行える仕組み。
+> ファイルをコピーして実験 → うまくいったら本体に反映、という作業を効率的に行える仕組み。
+
+<details>
+<summary>VBA 経験者向けの補足</summary>
+
+VBA でブックをコピーして実験し、うまくいったら本体に反映するのと同じ発想。Git のブランチはこの「コピーして実験」をより軽量に行える仕組み。
+
+</details>
 
 ### 基本操作
 
@@ -509,3 +565,28 @@ Claude Code に相談するのが最も手軽。
 
 Claude: .claude/settings.json にフックを追加します...
 ```
+
+---
+
+## 次のステップ
+
+このガイドで Claude Code のカスタマイズと自動化を学びました。次は以下のガイドで発展的な内容に進みましょう。
+
+### アプリケーション開発を学ぶ
+- [Claude Code アプリケーション開発ガイド](13-claude-code-app-dev-guide.md) — 実際のアプリ開発
+- [Claude Code デプロイガイド](14-claude-code-deploy-guide.md) — デプロイと運用
+- [Claude Code Skills ガイド](15-claude-code-skills-guide.md) — スキルシステムの活用
+- [Claude Code マルチエージェントガイド](16-claude-code-multi-agent-guide.md) — 複数の AI エージェント連携
+
+### 専門技術を深める
+- [セキュリティ基礎ガイド](20-security-basics-guide.md) — 開発におけるセキュリティ
+- [テスト入門ガイド](21-testing-intro-guide.md) — テストの書き方と実行
+- [Docker 入門ガイド](22-docker-intro-guide.md) — コンテナを使った開発環境
+- [Web 基礎ガイド](23-web-basics-guide.md) — Web 開発の基本
+- [データベース入門ガイド](24-database-intro-guide.md) — データベースの基礎
+- [API ガイド](25-api-guide.md) — API の設計と実装
+
+### 基礎を固める
+- [Mac 基本操作ガイド](01-mac-basics-guide.md) — Mac の基礎的な使い方
+- [ターミナル・シェルツールガイド](03-terminal-tools-guide.md) — シェルスクリプトと CLI ツール
+- [開発学習ロードマップ](30-learning-roadmap-guide.md) — 学習の進め方と全体像
