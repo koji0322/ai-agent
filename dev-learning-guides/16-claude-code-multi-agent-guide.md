@@ -41,6 +41,48 @@ Claude Code が内部的に使う「部下」のようなもの。メインの C
 - **短命**: 1 つのサブタスクが終わったら消える
 - **集中管理**: 全てメインが管理するため、メインのコンテキストが膨張しやすい
 
+### カスタムエージェント（.claude/agents/）
+
+Agent Teams の前に、まず **カスタムエージェント** を理解しておく。カスタムエージェントは `.claude/agents/` フォルダに定義ファイルを置くことで、**特定の役割に特化した Claude Code** を作れる仕組み。
+
+```markdown
+<!-- .claude/agents/test-writer.md -->
+---
+name: test-writer
+description: テストコードを作成する専門エージェント
+allowed-tools:
+  - Read
+  - Write
+  - Bash
+model: sonnet
+---
+
+あなたはテストコードの専門家です。
+pytest を使い、以下を守ってテストを作成してください:
+- 正常系・異常系・境界値をカバー
+- テスト名は日本語で具体的に
+- フィクスチャを活用する
+```
+
+使い方:
+
+```
+/agents:test-writer src/calculator.py のテストを書いて
+```
+
+> カスタムエージェントは Agent Teams で「チームメイトの役割定義」としても使える。
+
+### --worktree フラグ
+
+```bash
+claude --worktree "ログイン機能を実装して"
+```
+
+隔離された Git worktree（作業ツリー）で作業を実行する。現在のブランチを汚さずに並行作業できる。
+
+- Agent Teams のメンバーに `--worktree` を使わせると、メンバー間のファイル競合を防げる
+- 実験的な実装を安全に試したいときにも有用
+
 ### Agent Teams はこの限界を超える
 
 | | サブエージェント | Agent Teams |
@@ -68,6 +110,8 @@ Agent Teams はデフォルトで無効。設定ファイルで有効化する�
   }
 }
 ```
+
+> **注意**: Agent Teams は実験的機能のため、有効化の方法が変更される可能性がある。
 
 ### 基本概念
 
@@ -433,6 +477,47 @@ async def add_docstrings():
 
 asyncio.run(add_docstrings())
 ```
+
+---
+
+## 8-4. バックグラウンドエージェント
+
+### バックグラウンド実行とは
+
+Agent SDK やカスタムエージェントで、タスクを **バックグラウンドで実行** できる。メインのセッションで別の作業を続けながら、裏で長時間の処理を走らせる。
+
+```python
+# SDK でバックグラウンド実行
+async for message in query(
+    prompt="全ファイルの型チェックを実行して問題を報告して",
+    options=ClaudeAgentOptions(
+        allowed_tools=["Read", "Glob", "Grep", "Bash"],
+        background=True,
+    ),
+):
+    pass  # バックグラウンドで実行される
+```
+
+### エージェントメモリ
+
+カスタムエージェントにメモリ機能を持たせることもできる。エージェントが学んだことをセッション間で引き継ぐ。
+
+```markdown
+<!-- .claude/agents/reviewer.md -->
+---
+name: reviewer
+description: コードレビュー専門エージェント
+memory: project
+---
+```
+
+`memory` フィールドの値:
+
+| 値 | 動作 |
+|---|---|
+| `project` | プロジェクトスコープのメモリ |
+| `user` | ユーザースコープのメモリ |
+| `none` | メモリなし（デフォルト） |
 
 ---
 
