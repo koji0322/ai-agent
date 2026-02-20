@@ -4,17 +4,17 @@
 
 このガイドは **ターミナルで使うモダンな CLI ツールをまとめた自分用リファレンス** です。
 
-- **想定読者**: ターミナルの基本操作は覚えた。標準コマンドの代替やもっと便利なツールを導入したい
+- **想定読者**: プログラミング初心者。ターミナルの基本操作は覚えた。標準コマンドの代替やもっと便利なツールを導入したい
 - **ゴール**: モダンな CLI ツールを知り、日常の開発作業を効率化できるようになる
-- **前提**: [01 - Claude Code 基本操作ガイド](01-claude-code-guide.md) のターミナル基礎を理解していること
-- **関連ガイド**: [10 - Mac おすすめアプリガイド](10-mac-apps-guide.md)
+- **前提**: [10 - Claude Code 基本操作ガイド](10-claude-code-guide.md) のターミナル基礎を理解していること
+- **関連ガイド**: [02 - Mac おすすめアプリガイド](02-mac-apps-guide.md)
 
-> **10 との棲み分け**: [10](10-mac-apps-guide.md) は **GUI アプリ**（iTerm2・VS Code・Rectangle など）を中心に紹介した。
+> **02 との棲み分け**: [02](02-mac-apps-guide.md) は **GUI アプリ**（iTerm2・VS Code・Rectangle など）を中心に紹介した。
 > このガイドでは **ターミナルの中で使う CLI ツール**（コマンドの代替・開発支援）に特化する。
-> 10 でカバー済みの iTerm2・Oh My Zsh・Starship・Homebrew・gh CLI とは重複しない。
+> 02 でカバー済みの iTerm2・Oh My Zsh・Starship・Homebrew・gh CLI とは重複しない。
 
 > すべて **無料・オープンソース** のツールを紹介する。
-> インストールは `brew install` を中心に記載。Homebrew の基本は [09](09-mac-basics-guide.md) を参照。
+> インストールは `brew install` を中心に記載。Homebrew の基本は [01](01-mac-basics-guide.md) を参照。
 
 ### セクション一覧
 
@@ -753,7 +753,7 @@ pyenv install --list    # インストール可能なバージョン一覧
 
 ## 7. Git 拡張
 
-Git の操作をもっと便利にするツール。gh CLI については [10 - Mac おすすめアプリガイド](10-mac-apps-guide.md) を参照。
+Git の操作をもっと便利にするツール。gh CLI については [02 - Mac おすすめアプリガイド](02-mac-apps-guide.md) を参照。
 
 ### lazygit — ターミナル Git UI
 

@@ -9,7 +9,7 @@
 - **前提**: ターミナルの基本操作ができること。Python の基礎を理解していること
 - **関連ガイド**: [10 - DS 向け Mac アプリガイド](10-mac-apps-guide.md)、[12 - DS 向け Web サイトガイド](12-web-resources-guide.md)
 
-> **元ガイドとの棲み分け**: [11 - ターミナル CLI ツールガイド](../11-terminal-tools-guide.md) は **Web 開発者向け** のモダン CLI ツール（eza・bat・ripgrep 等）を紹介している。
+> **元ガイドとの棲み分け**: [03 - ターミナル CLI ツールガイド](../03-terminal-tools-guide.md) は **Web 開発者向け** のモダン CLI ツール（eza・bat・ripgrep 等）を紹介している。
 > このガイドでは **データサイエンス・機械学習に特化した CLI ツール** に絞って紹介する。
 > 汎用的な CLI ツール（eza・bat・fd・fzf 等）は元ガイドを参照。
 
