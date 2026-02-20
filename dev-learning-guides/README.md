@@ -150,8 +150,9 @@ Mac に導入すべき開発・生産性向上アプリをまとめたガイド�
 | インストール | Node.js・Claude Code の導入・初回ログイン |
 | 起動と終了 | プロジェクトフォルダでの起動・`Ctrl+D` で終了・`-c` で再開 |
 | 基本的な対話 | 指示 → 提案 → 承認の流れ |
-| スラッシュコマンド | `/help`, `/clear`, `/plan`, `/resume` など |
-| CLAUDE.md | プロジェクト固有の設定ファイル |
+| スラッシュコマンド | `/help`, `/clear`, `/plan`, `/model`, `/cost` など |
+| モデル選択 | Sonnet 4.6（標準）/ Opus 4.6（高性能）/ Haiku 4.5（高速）の使い分け |
+| CLAUDE.md / MEMORY.md | プロジェクト固有設定・自動メモリ機能 |
 
 ---
 
@@ -180,9 +181,11 @@ Git でバージョン管理し、GitHub にバックアップし、実践的な
 | 設定ファイル | ユーザー / プロジェクト共有 / ローカルの 3 スコープ |
 | CLAUDE.md 活用 | 読み込み階層・「やってはいけないこと」の明記 |
 | カスタムコマンド | `.claude/commands/` にテンプレートを配置・`$ARGUMENTS` |
-| フック | `PreToolUse` / `PostToolUse` / `Notification` で自動化 |
+| フック | 15種類のイベント（`PreToolUse` / `PostToolUse` / `SessionStart` など）で自動化 |
+| カスタムエージェント | `.claude/agents/` に専門エージェントを定義 |
 | MCP | 外部ツール連携・`.mcp.json` の設定 |
 | ヘッドレスモード | `claude -p` でワンショット実行・シェルスクリプト連携 |
+| Worktree | `--worktree` でブランチを隔離した安全な作業 |
 
 ---
 
@@ -226,12 +229,12 @@ Python・Web アプリ・データベースで実用的なアプリケーショ�
 
 | トピック | 内容 |
 |---------|------|
-| スキルとは | カスタムコマンドとの違い・自動発動の仕組み |
-| 3 層アーキテクチャ | メタデータ → 本文 → 補足資料の段階的読み込み |
-| スキル作成 | `SKILL.md` の書き方・YAML フロントマター |
-| 公式スキル | Excel・PowerPoint・Word・PDF |
-| プラグイン | フォルダ構成・`plugin.json`・名前空間・配布 |
-| フックの発展 | `SessionStart` / `UserPromptSubmit` / `prompt` タイプ |
+| スキルとは | カスタムコマンドとの違い・段階的読み込みの仕組み |
+| YAML フロントマター | `allowed-tools` / `context: fork` / `model` フィールド |
+| スキル作成 | `description` の書き方・`$ARGUMENTS` / 動的コンテキスト注入 |
+| 公式スキル | Excel・PowerPoint・Word・PDF（Anthropic 提供） |
+| プラグイン | フォルダ構成・`plugin.json`・名前空間・GitHub 配布 |
+| スキルとフックの連携 | スキル固有フック・15種類のイベント一覧 |
 
 ---
 
@@ -242,11 +245,12 @@ Agent Teams で並列作業し、Agent SDK でプログラムから制御する�
 
 | トピック | 内容 |
 |---------|------|
-| Agent Teams | 有効化・チームリード / チームメイト・共有タスクリスト |
+| カスタムエージェント | `.claude/agents/` でチームメイトの役割を定義 |
+| Agent Teams | チームリード / チームメイト・共有タスクリスト・メッセージング |
 | チーム構成パターン | 並行開発・マルチ観点レビュー・仮説検証 |
 | 品質管理 | プラン承認・品質ゲート（フック連携） |
 | Agent SDK | Python / TypeScript からの制御・`query()` 関数 |
-| SDK 実用例 | 自動レビュー・CI/CD 連携・一括処理 |
+| バックグラウンドエージェント | 並行バックグラウンド実行・エージェントメモリ |
 | 使い分け | 状況別の最適アプローチ判断フロー |
 
 ---
@@ -412,8 +416,10 @@ Claude Code: 10（基本）→ 11（実践）→ 12（応用）→ 13（アプ�
 | 開発に役立つサイトを知りたい | [04](04-web-resources-guide.md) |
 | 開発者向け SNS を知りたい | [05](05-sns-guide.md) |
 | Claude Code をとりあえず動かしたい | [10](10-claude-code-guide.md) |
+| モデルの選び方・コストを知りたい | [10](10-claude-code-guide.md)（セクション 7-2） |
 | Git / GitHub を使いたい | [11](11-claude-code-practical-guide.md) |
 | 毎回同じ指示を打つのが面倒 | [12](12-claude-code-advanced-guide.md)（カスタムコマンド・フック） |
+| フックで自動化したい | [12](12-claude-code-advanced-guide.md)（セクション 4） |
 | Python でアプリを作りたい | [13](13-claude-code-app-dev-guide.md) |
 | 作ったツールを公開したい | [14](14-claude-code-deploy-guide.md) |
 | Claude Code に専門知識を持たせたい | [15](15-claude-code-skills-guide.md) |
@@ -427,21 +433,6 @@ Claude Code: 10（基本）→ 11（実践）→ 12（応用）→ 13（アプ�
 | Python の環境を構築したい | [26](26-python-setup-guide.md) |
 | データ分析を始めたい | [27](27-data-analysis-guide.md) |
 | 学習の全体像とロードマップを知りたい | [30](30-learning-roadmap-guide.md) |
-
-<details>
-<summary>VBA 経験者向けの対比表</summary>
-
-| レベル | VBA でやっていたこと | このシリーズで学ぶこと |
-|-------|-------------------|-------------------|
-| 1 | VBE を開いてコードを書く | ターミナルを開いて Claude Code を使う |
-| 2 | マクロを書いて業務を処理する | Git で管理しながら開発フローで作業する |
-| 3 | 自動実行マクロ・ユーザーフォーム | カスタムコマンド・フック・MCP で自動化 |
-| 4 | Excel アドインや独立ツールの開発 | Python・Web アプリ・DB でアプリを作る |
-| 5 | ツールを共有フォルダで配布・保守 | GitHub で公開・CI/CD で自動テスト・保守 |
-| 6 | 汎用アドインを整備して社内配布 | スキル・プラグインで知識を構造化・共有 |
-| 7 | （VBA の枠を超える） | 複数 AI の協調・SDK でパイプライン構築 |
-
-</details>
 
 ---
 

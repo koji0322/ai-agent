@@ -716,6 +716,10 @@ function UserProfile({ userId }) {
 
 Next.js は、React ベースのフルスタックフレームワークです。Vercel が開発しています。
 
+> **Next.js 15 / React 19 の主な変更点（2026 年 2 月時点の最新安定版）**
+> - Dynamic Route の `params` が非同期（Promise 型）になった。`await params` で取得する
+> - React 19 で Server Actions が安定版に、`use()` フック追加など
+
 **主な特徴**
 - ファイルベースのルーティング
 - サーバーサイドレンダリング (SSR)
@@ -756,8 +760,10 @@ export default function About() {
 }
 
 // app/blog/[id]/page.tsx
-export default function BlogPost({ params }: { params: { id: string } }) {
-    return <h1>ブログ記事 #{params.id}</h1>;
+// Next.js 15 以降: params は Promise 型
+export default async function BlogPost({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    return <h1>ブログ記事 #{id}</h1>;
 }
 ```
 
@@ -771,8 +777,10 @@ export default function BlogPost({ params }: { params: { id: string } }) {
 
 ```tsx
 // SSR: サーバーで毎回データ取得
-export default async function UserPage({ params }: { params: { id: string } }) {
-    const user = await fetch(`https://api.example.com/users/${params.id}`, {
+// Next.js 15 以降: params は Promise 型
+export default async function UserPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const user = await fetch(`https://api.example.com/users/${id}`, {
         cache: 'no-store'  // キャッシュしない
     }).then(res => res.json());
 
@@ -780,8 +788,10 @@ export default async function UserPage({ params }: { params: { id: string } }) {
 }
 
 // SSG: ビルド時にデータ取得
-export default async function BlogPost({ params }: { params: { id: string } }) {
-    const post = await fetch(`https://api.example.com/posts/${params.id}`).then(res => res.json());
+// Next.js 15 以降: params は Promise 型
+export default async function BlogPost({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const post = await fetch(`https://api.example.com/posts/${id}`).then(res => res.json());
 
     return <article>{post.content}</article>;
 }
@@ -864,8 +874,8 @@ npm (Node Package Manager) は、JavaScript のパッケージ管理ツールで
     "lint": "eslint ."
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "next": "^14.0.0"
+    "react": "^19.0.0",
+    "next": "^15.0.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

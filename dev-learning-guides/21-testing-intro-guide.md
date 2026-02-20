@@ -488,7 +488,7 @@ pytest --cov=src --cov-report=term-missing tests/
 ### カバレッジレポートの読み方
 
 ```
----------- coverage: platform darwin, python 3.11.1 -----------
+---------- coverage: platform darwin, python 3.13.2 -----------
 Name                 Stmts   Miss  Cover   Missing
 --------------------------------------------------
 src/calculator.py       10      2    80%   15-16
@@ -673,7 +673,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.13'
 
     - name: Install dependencies
       run: |
@@ -699,7 +699,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.11', '3.12', '3.13']
 
     steps:
     - uses: actions/checkout@v4

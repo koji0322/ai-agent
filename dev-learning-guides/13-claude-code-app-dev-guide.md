@@ -38,20 +38,6 @@ Excel の操作は、Python では `openpyxl` や `pandas` というライブラ
 | セル範囲 A1:C10 を選択 | `df.iloc[0:10, 0:3]` |
 | 列全体の合計を計算 | `df["A"].sum()` |
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBA で `Range("A1").Value` と書いていた操作は、Python の pandas では `df.iloc[0, 0]` に相当します。
-
-| VBA | Python（pandas） |
-|-----|-----------------|
-| `Range("A1").Value` | `df.iloc[0, 0]` |
-| `Cells(i, 1).Value` | `df.iloc[i-1, 0]` |
-| `Range("A1:C10")` | `df.iloc[0:10, 0:3]` |
-| `WorksheetFunction.Sum(Range("A:A"))` | `df["A"].sum()` |
-
-</details>
-
 ### Claude Code への指示例
 
 ```
@@ -73,16 +59,6 @@ monthly = df.groupby("月")["売上"].sum()
 print(monthly)
 ```
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-CSV の読み込みは VBA の `QueryTable.Add` に相当します。
-月ごとの売上合計は VBA の `SUMIF` に相当する処理です。
-
-VBA では何十行も書いていた集計処理が、Python + pandas では数行で書けます。
-
-</details>
-
 > コードを覚える必要はありません。Claude Code に「Excel でやっていた○○と同じ処理を Python で書いて」と伝えれば書いてくれます。
 
 ### ファイルの一括処理
@@ -95,13 +71,6 @@ VBA では何十行も書いていた集計処理が、Python + pandas では数
 Claude: glob と pandas を使って実装します...
 ```
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBA では `Dir` 関数でファイルをループしていた処理に相当します。
-
-</details>
-
 ---
 
 ## 2. プロジェクトの設計を Claude Code と一緒に考える
@@ -109,13 +78,6 @@ VBA では `Dir` 関数でファイルをループしていた処理に相当し
 ### いきなりコードを書かない
 
 プロジェクト開発では **先に設計を考える** と後で楽になります。
-
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBA では「とりあえず標準モジュールに書き始める」ことが多かったかもしれませんが、プロジェクト開発では先に設計を考えることが重要です。
-
-</details>
 
 ### Claude Code に壁打ちしてもらう
 
@@ -181,13 +143,6 @@ python src/main.py data/sales.csv --month 2026-01
 
 > コマンドラインツールでは、ユーザーからの入力を実行時の引数として渡します。GUI を作る必要がないので、最も手軽にツールを作成できます。
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBA では `InputBox` でユーザーからの入力を受けていましたが、コマンドラインツールでは実行時に引数として渡します。
-
-</details>
-
 ### 引数の受け取り
 
 ```python
@@ -236,20 +191,6 @@ Claude: python src/main.py data/sales.csv --month 2026-01 を実行します。
 | インストールが必要 | ブラウザがあればすぐ使える |
 | ボタンクリックでローカルのコードが動く | ボタンクリックでサーバー側のコードが動く |
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBA のユーザーフォームに相当するものを、ブラウザの中で動かすイメージです。
-
-| VBA ユーザーフォーム | Web アプリ |
-|-------------------|----------|
-| Excel の中で動く | ブラウザで動く |
-| 自分の PC でしか使えない | URL を共有すれば誰でも使える |
-| TextBox, ComboBox などの部品 | HTML の input, select などの部品 |
-| ボタンクリックで VBA コードが動く | ボタンクリックで Python（サーバー側）が動く |
-
-</details>
-
 ### 最も手軽な方法: Streamlit
 
 Streamlit は **Python だけで Web アプリが作れるフレームワーク**。HTML や CSS を書く必要がない。
@@ -279,13 +220,6 @@ if uploaded_file:
     monthly = df.groupby("月")["売上"].sum()
     st.bar_chart(monthly)
 ```
-
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-`st.file_uploader()` は VBA の `Application.GetOpenFilename` に相当する機能です。
-
-</details>
 
 実行:
 
@@ -367,15 +301,6 @@ cursor.execute("SELECT * FROM customers WHERE name LIKE ?", ("%田中%",))
 results = cursor.fetchall()
 ```
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-- テーブル作成は VBA の `Worksheets.Add` に相当します
-- データ挿入は VBA の `Range("A1").Value = "..."` に相当します
-- 検索は VBA の `VLOOKUP` や `Find` に相当します
-
-</details>
-
 ### SQL を覚える必要はない
 
 Claude Code に日本語で依頼すれば、SQL を書いてくれる。
@@ -407,15 +332,6 @@ response = requests.get("https://api.example.com/data")
 data = response.json()
 print(data)
 ```
-
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBA で `CreateObject("MSXML2.XMLHTTP")` を使って Web サイトからデータを取得していたのと同じことです。Python の `requests` ライブラリを使うと、もっと簡単に書けます。
-
-`requests.get()` は VBA の `XMLHTTP.Send` に相当します。
-
-</details>
 
 ### Claude Code への指示例
 
@@ -471,15 +387,6 @@ api_key = os.getenv("API_KEY")
 **コードが正しく動くことを自動で確認する仕組み**。
 
 > プログラムを修正するたびに、手動で動作確認するのは大変です。テストコードを書いておけば、自動で確認できるので「確認し忘れ」を防げます。
-
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-イミディエイトウィンドウで `? MyFunction(10)` と入力して結果を手動確認していたのと同じことを、テストコードで自動化します。
-
-手動だと「確認し忘れ」が起きますが、テストコードなら毎回同じチェックを確実に実行できます。
-
-</details>
 
 ### pytest の基本
 

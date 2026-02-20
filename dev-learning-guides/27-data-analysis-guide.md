@@ -147,13 +147,6 @@ print(df["部署"].value_counts())
 print(df["売上"].mean())
 ```
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBA では `Range("A1:A10")` のように範囲を指定してデータを取得するが、pandas では `df["列名"]` で列全体にアクセスする。また、VBA で `For Each cell In Range(...)` とループ処理していた集計も、pandas では `df["売上"].sum()` のようにベクトル演算で一行で書ける。ループを書く必要がほとんどないため、コードが簡潔になり、処理速度も大幅に向上する。
-
-</details>
-
 ---
 
 ## 3. matplotlib でグラフ作成
@@ -239,13 +232,6 @@ plt.savefig("sales_chart.pdf", bbox_inches="tight")
 
 > **注意**: `plt.savefig()` は `plt.show()` より前に呼び出してください。`plt.show()` の後はグラフがリセットされます。
 
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-Excel ではデータ範囲を選択して「グラフの挿入」からウィザード形式でグラフを作成するが、matplotlib ではコードでグラフの種類・色・ラベルなどをすべて指定する。最初は手間に感じるが、一度書いたコードを再利用でき、データが更新されても同じコードでグラフを再生成できる利点がある。
-
-</details>
-
 ---
 
 ## 4. Jupyter Notebook
@@ -293,13 +279,6 @@ VS Code でも Jupyter Notebook を使うことができます。
 3. セルにコードを入力して `Shift + Enter` で実行
 
 > **Tip**: VS Code で使う場合はブラウザを開く必要がなく、他のファイルとの行き来もスムーズです。
-
-<details>
-<summary>VBA 経験者向けの補足</summary>
-
-VBE のイミディエイトウィンドウでは `? Range("A1").Value` のようにコードを一行ずつ実行して結果を確認できる。Jupyter Notebook はその進化版で、複数行のコードをセルにまとめて実行し、結果（テーブルやグラフ）をその場に表示して残しておける。分析の試行錯誤に最適な環境である。
-
-</details>
 
 ---
 

@@ -66,7 +66,7 @@ import anthropic
 client = anthropic.Anthropic()  # ANTHROPIC_API_KEY 環境変数を使用
 
 message = client.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-sonnet-4-6",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "pandas で欠損値を中央値で補完するコードを書いてください。"}
@@ -79,7 +79,7 @@ print(message.content[0].text)
 
 ```python
 message = client.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-sonnet-4-6",
     max_tokens=1024,
     system="あなたはデータサイエンスの専門家です。回答は Python コードと簡潔な説明で返してください。",
     messages=[
@@ -386,7 +386,7 @@ data_summary = df.describe().to_string()
 sample = df.head(5).to_string()
 
 message = client.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-sonnet-4-6",
     max_tokens=2048,
     system="あなたはシニアデータサイエンティストです。データ分析の結果を日本語で簡潔にレポートしてください。",
     messages=[{
@@ -416,7 +416,7 @@ print(message.content[0].text)
 def classify_review(text: str) -> dict:
     """レビューテキストを LLM で分類する。"""
     message = client.messages.create(
-        model="claude-sonnet-4-5-20250929",
+        model="claude-sonnet-4-6",
         max_tokens=256,
         messages=[{
             "role": "user",
@@ -437,7 +437,7 @@ def classify_review(text: str) -> dict:
 def extract_entities(text: str) -> dict:
     """テキストから構造化データを抽出する。"""
     message = client.messages.create(
-        model="claude-sonnet-4-5-20250929",
+        model="claude-sonnet-4-6",
         max_tokens=512,
         messages=[{
             "role": "user",

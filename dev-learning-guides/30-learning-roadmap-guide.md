@@ -494,9 +494,9 @@ Python で開発を始める前に、まず環境を整える。詳細は [26 - 
 3. **VS Code の Python 拡張を入れる** — コード補完・デバッグが使えるようになる
 
 ```bash
-# pyenv で Python 3.12 をインストール
-pyenv install 3.12
-pyenv global 3.12
+# pyenv で Python 3.13 をインストール
+pyenv install 3.13
+pyenv global 3.13
 
 # プロジェクトフォルダで仮想環境を作成・有効化
 python -m venv .venv
@@ -897,7 +897,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - run: pip install -r requirements.txt
       - run: pytest -v
 ```

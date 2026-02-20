@@ -465,10 +465,10 @@ PostgreSQL は高機能なオープンソースのリレーショナルデータ
 
 ```bash
 # PostgreSQL のインストール
-brew install postgresql@15
+brew install postgresql@17
 
 # サービス起動
-brew services start postgresql@15
+brew services start postgresql@17
 
 # バージョン確認
 psql --version

@@ -259,7 +259,7 @@
 
 ## 6. Bluesky・Threads・Mastodon
 
-X（Twitter）の代替として注目される新興 SNS。テックコミュニティが徐々に形成されている。
+X（Twitter）の代替として定着しつつある SNS。とくに Bluesky はテックコミュニティの主要な情報発信拠点の一つとなっている。
 
 ### プラットフォーム比較
 
@@ -269,7 +269,7 @@ X（Twitter）の代替として注目される新興 SNS。テックコミュ�
 | **Threads** | https://www.threads.net | Meta | Instagram アカウントで利用。カジュアルな雰囲気 | 成長中。一般ユーザーが多め |
 | **Mastodon** | https://joinmastodon.org | オープンソース | 分散型 SNS（ActivityPub）。自分でサーバーを選ぶ | 一定数。OSS 寄りのエンジニアが多い |
 
-### Bluesky — テック系の移住先として最も活発
+### Bluesky — テックコミュニティの確立しつつある情報発信拠点
 
 | 項目 | 内容 |
 |------|------|

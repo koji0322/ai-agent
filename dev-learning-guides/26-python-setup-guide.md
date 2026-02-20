@@ -10,14 +10,6 @@
 
 Python は **汎用プログラミング言語** です。データ分析・Web アプリ・自動化スクリプトなど、幅広い用途に使えます。Mac には最初から Python が入っていますが、開発用にはバージョン管理や仮想環境の設定が必要です。
 
-<details><summary>VBA 経験者向けの補足</summary>
-
-VBA は Excel に組み込まれた言語で、Excel さえあれば動きます。
-Python は独立した言語で、自分でインストール・バージョン管理を行います。
-VBA が「Excel の中の専用工場」なら、Python は「自分で好きな道具を揃えて作る自由な工房」です。
-
-</details>
-
 ### 関連ガイド
 
 - **Mac の基本操作**: [Mac 基本操作ガイド](01-mac-basics-guide.md)
@@ -47,7 +39,7 @@ Python には大きく **Python 2** と **Python 3** の 2 系統がある。
 ```bash
 # Python 3 のバージョンを確認
 python3 --version
-# 出力例: Python 3.12.4
+# 出力例: Python 3.13.2
 
 # python コマンドがどこを指しているか確認
 which python3
@@ -60,22 +52,14 @@ Mac に最初から入っている Python（システム Python）はバージ�
 
 | 方針 | 説明 |
 |------|------|
-| **最新の安定版を選ぶ** | `3.12.x` や `3.13.x` など、最新のメジャーリリースを使う |
-| **マイナーバージョンは最新** | `3.12.4` より `3.12.7` のように、バグ修正が反映された最新を選ぶ |
+| **最新の安定版を選ぶ** | `3.13.x` など など、最新のメジャーリリースを使う |
+| **マイナーバージョンは最新** | `3.13.1` より `3.13.2` のように、バグ修正が反映された最新を選ぶ |
 | **特別な理由がなければ最新** | ライブラリの互換性で古いバージョンが必要なケースは稀 |
 
 ```bash
 # pyenv でインストール可能なバージョン一覧を確認（後述）
 pyenv install --list | grep "^  3\."
 ```
-
-<details><summary>VBA 経験者向けの補足</summary>
-
-VBA ではバージョン管理を意識することはほぼありません（Excel のバージョンに紐づく）。
-Python では言語自体のバージョンを自分で選び、管理します。
-Excel 2016 と Excel 2019 で VBA の動作が微妙に違うのと同じように、Python もバージョンによって使える機能が異なります。
-
-</details>
 
 ---
 
@@ -87,7 +71,7 @@ Excel 2016 と Excel 2019 で VBA の動作が微妙に違うのと同じよう�
 
 | 機能 | 説明 |
 |------|------|
-| 複数バージョンの共存 | 3.11 と 3.12 を両方インストールできる |
+| 複数バージョンの共存 | 3.12 と 3.13 を両方インストールできる |
 | グローバル設定 | デフォルトで使うバージョンを指定 |
 | ローカル設定 | プロジェクトごとにバージョンを指定 |
 
@@ -120,18 +104,18 @@ source ~/.zshrc
 # インストール可能なバージョンを確認
 pyenv install --list | grep "^  3\.12"
 
-# Python 3.12.7 をインストール（例）
-pyenv install 3.12.7
+# Python 3.13.2 をインストール（例）
+pyenv install 3.13.2
 
 # インストール済みのバージョン一覧
 pyenv versions
 
 # グローバル（システム全体）のデフォルトを設定
-pyenv global 3.12.7
+pyenv global 3.13.2
 
 # バージョンを確認
 python --version
-# 出力: Python 3.12.7
+# 出力: Python 3.13.2
 ```
 
 ### プロジェクトごとのバージョン指定（local）
@@ -140,12 +124,12 @@ python --version
 # プロジェクトフォルダに移動
 cd ~/projects/my-app
 
-# このプロジェクトだけ Python 3.11.9 を使う
-pyenv local 3.11.9
+# このプロジェクトだけ Python 3.12.9 を使う
+pyenv local 3.12.9
 
 # .python-version ファイルが作成される
 cat .python-version
-# 出力: 3.11.9
+# 出力: 3.12.9
 ```
 
 `pyenv local` を実行すると、そのフォルダに `.python-version` ファイルが作成される。以降、このフォルダ内では自動的に指定バージョンの Python が使われる。
@@ -159,7 +143,7 @@ cat .python-version
 brew install mise
 
 # mise で Python をインストール
-mise use python@3.12.7
+mise use python@3.13.2
 
 # mise でバージョン確認
 mise current python
@@ -179,14 +163,6 @@ Python ではプロジェクトごとに使うライブラリ（パッケージ�
 |------|------|
 | 仮想環境なし | プロジェクト A が pandas 1.5 を必要、プロジェクト B が pandas 2.0 を必要 → 共存できない |
 | 仮想環境あり | プロジェクトごとに独立した環境を持つ → それぞれ別バージョンを使える |
-
-<details><summary>VBA 経験者向けの補足</summary>
-
-VBA の「参照設定」（ツール → 参照設定）をイメージしてください。
-ブック A では Microsoft XML v6.0 を参照し、ブック B では v3.0 を参照する——このように参照するライブラリをブックごとに切り替えるのが VBA の参照設定です。
-Python の仮想環境はこれに近い概念で、**プロジェクトごとにライブラリの「参照設定」を独立に管理する仕組み** です。
-
-</details>
 
 ### 仮想環境の作成と使い方
 
@@ -312,19 +288,6 @@ pip install --upgrade pip
 pip install --upgrade pandas
 ```
 
-<details><summary>VBA 経験者向けの補足</summary>
-
-VBA で外部ライブラリを使うには「参照設定」で DLL を追加したり、`CreateObject` でライブラリを呼び出していました。
-Python の `pip install` はこれに相当します。ただし、VBA の参照設定は手動で 1 つずつ追加しますが、pip は `requirements.txt` で一括管理できます。
-
-| VBA | Python |
-|-----|--------|
-| 参照設定で DLL を追加 | `pip install パッケージ名` |
-| `CreateObject("Scripting.FileSystemObject")` | `import os` / `from pathlib import Path` |
-| 手動で 1 つずつ管理 | `requirements.txt` で一括管理 |
-
-</details>
-
 ---
 
 ## 5. VS Code での Python 開発設定
@@ -406,19 +369,6 @@ VS Code の Python デバッグ機能を使うと、コードを 1 行ずつ実�
 | 続行（次のブレークポイントまで） | `F5` |
 | デバッグ停止 | `Shift + F5` |
 
-<details><summary>VBA 経験者向けの補足</summary>
-
-VBE のデバッグ機能（F8 でステップ実行、ウォッチウィンドウで変数確認）と同じ考え方です。
-
-| VBE | VS Code |
-|-----|---------|
-| `F8`（ステップ実行） | `F10`（ステップオーバー） |
-| `F5`（実行） | `F5`（デバッグ開始） |
-| ウォッチウィンドウ | 変数パネル |
-| イミディエイトウィンドウ | デバッグコンソール |
-
-</details>
-
 ---
 
 ## 6. Claude Code と Python
@@ -480,7 +430,7 @@ Claude Code と Python を組み合わせる際のポイント:
 # CLAUDE.md
 
 ## 環境情報
-- Python: 3.12.7（pyenv で管理）
+- Python: 3.13.2（pyenv で管理）
 - 仮想環境: .venv（venv で作成）
 - パッケージ管理: pip + requirements.txt
 

@@ -660,8 +660,8 @@ watch -n 1 "curl -s localhost:3000/health"  # ヘルスチェックの監視
 eval "$(mise activate zsh)"
 
 # 基本的な使い方
-mise use node@20         # Node.js 20 を使用
-mise use python@3.12     # Python 3.12 を使用
+mise use node@22         # Node.js 22 LTS を使用
+mise use python@3.13     # Python 3.13 を使用
 mise install node@22     # Node.js 22 をインストール
 mise ls                  # インストール済みバージョン一覧
 mise current             # 現在使用中のバージョン
@@ -675,7 +675,7 @@ mise use --path node@20  # カレントディレクトリに .mise.toml を作�
 ```toml
 [tools]
 node = "20"
-python = "3.12"
+python = "3.13"
 ```
 
 > **なぜ mise?**: 以前は asdf が定番だったが、mise は Rust 製で高速・設定がシンプル・エラーメッセージがわかりやすい。
@@ -698,9 +698,9 @@ Node.js だけを管理するなら専用ツールもある。
 eval "$(fnm env --use-on-cd)"
 
 # 基本的な使い方
-fnm install 20          # Node.js 20 をインストール
-fnm use 20              # Node.js 20 に切り替え
-fnm default 20          # デフォルトバージョンを設定
+fnm install 22          # Node.js 22 LTS をインストール
+fnm use 22              # Node.js 22 LTS に切り替え
+fnm default 22          # デフォルトバージョンを設定
 fnm list                # インストール済み一覧
 fnm list-remote         # インストール可能なバージョン一覧
 ```
@@ -719,9 +719,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"
 
 # 基本的な使い方
-nvm install 20          # Node.js 20 をインストール
-nvm use 20              # Node.js 20 に切り替え
-nvm alias default 20    # デフォルトバージョンを設定
+nvm install 22          # Node.js 22 LTS をインストール
+nvm use 22              # Node.js 22 LTS に切り替え
+nvm alias default 22    # デフォルトバージョンを設定
 nvm ls                  # インストール済み一覧
 ```
 
@@ -742,9 +742,9 @@ nvm ls                  # インストール済み一覧
 eval "$(pyenv init -)"
 
 # 基本的な使い方
-pyenv install 3.12.0    # Python 3.12.0 をインストール
-pyenv global 3.12.0     # グローバルバージョンを設定
-pyenv local 3.11.0      # カレントディレクトリのバージョンを設定（.python-version 作成）
+pyenv install 3.13.0    # Python 3.13.0 をインストール
+pyenv global 3.13.0     # グローバルバージョンを設定
+pyenv local 3.12.0      # カレントディレクトリのバージョンを設定（.python-version 作成）
 pyenv versions          # インストール済み一覧
 pyenv install --list    # インストール可能なバージョン一覧
 ```
@@ -946,19 +946,19 @@ $ cd /ect                # 存在しないパス → エラー
 $ fuck                   # 自動で「cd /etc」に修正
 ```
 
-### neofetch — システム情報の表示
+### fastfetch — システム情報の表示（neofetch 後継）
 
 | 項目 | 内容 |
 |------|------|
 | **用途** | OS・カーネル・CPU・メモリ・シェルなどのシステム情報をアスキーアート付きで表示 |
-| **インストール** | `brew install neofetch` |
-| **Windows での代替** | neofetch（同じツールが使える） |
+| **インストール** | `brew install fastfetch` |
+| **Windows での代替** | fastfetch（同じツールが使える） |
 
 ```bash
-neofetch                # システム情報を表示
+fastfetch               # システム情報を表示
 ```
 
-> neofetch はメンテナンスが終了している。後継として **fastfetch**（`brew install fastfetch`）がある。
+> neofetch はメンテナンスが終了しているため、fastfetch の使用を推奨。
 
 ### tokei — コード行数カウント
 

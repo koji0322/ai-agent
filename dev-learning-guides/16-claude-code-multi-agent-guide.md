@@ -14,11 +14,6 @@
 > このガイドでは、**複数の Claude Code を協調させる Agent Teams** と、
 > **プログラムから Claude Code を制御する Agent SDK** を使い、より大規模なタスクに対応する。
 
-<details><summary>VBA 経験者向けの補足</summary>
-
-VBA の枠を完全に超える段階です。複数のマクロを連携させてワークフロー全体を自動化し、さらに Excel の外からマクロを呼び出すイメージです。
-</details>
-
 > **注意**: Agent Teams は実験的機能（2026 年 2 月時点）。仕様が変更される可能性がある。
 
 ---
@@ -54,7 +49,7 @@ allowed-tools:
   - Read
   - Write
   - Bash
-model: sonnet
+model: claude-sonnet-4-6
 ---
 
 あなたはテストコードの専門家です。
@@ -448,7 +443,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - run: pip install claude-agent-sdk
       - run: python scripts/auto_review.py
         env:
