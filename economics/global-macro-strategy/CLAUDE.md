@@ -18,16 +18,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```
 global-macro-strategy/
+├── data/                データ出力先（スクリプトが自動生成）
+│   ├── assets/          ETF・資産価格データ  assetdata_YYYYMMDD.csv
+│   ├── reports/
+│   │   ├── daily/       日次レポート    report_YYYYMMDD.md
+│   │   └── weekly/      週次レポート    weekly_YYYYMMDD.md
+│   ├── macro/           マクロ経済指標データ（CPI・GDP等）
+│   ├── sentiment/       センチメント・フローデータ
+│   ├── position/        ポジション・保有状況データ
+│   └── clock/           12clock診断結果履歴
 ├── prompt/
-│   ├── pre-review/      精査前プロンプト（原本保管）
+│   ├── pre-review/      精査前プロンプト（原本保管）・サンプルCSV
 │   └── refined/         運用中プロンプト（Claude Code専用・磨き済み）
 │       ├── 0-12clock-diagnosis.md   12クロック月次診断
 │       ├── 1-day.md                 日次アノマリー検知レポート
 │       └── 2-7-weekly.md            週次ウォーゲーミングブリーフ
 ├── reference/
 │   └── pre-review/      参照資料（12clockモデル・フレームワーク等）
-└── state/
-    └── current-clock.md 12クロック最新診断結果（自動更新）
+├── state/
+│   └── current-clock.md 12クロック最新診断結果（自動更新）
+└── tools/               データ生成スクリプト
+    ├── etf_master.csv              ETF静的メタデータ
+    ├── export_csv.py               資産価格エクスポート（→ data/assets/）
+    ├── run_daily_report.sh             1-dayレポート自動生成（→ data/reports/daily/）
+    ├── run_weekly_report.sh            週次レポート自動生成（→ data/reports/weekly/）
+    ├── create_master.py                一回限りの移行スクリプト
+    ├── requirements.txt
+    ├── com.globalmacrosta.export.plist          launchd: 火〜土 05:55 価格取得
+    ├── com.globalmacrosta.daily-report.plist    launchd: 火〜土 06:00 日次レポート生成
+    └── com.globalmacrosta.weekly-report.plist   launchd: 土    06:10 週次レポート生成
 ```
 
 ---
@@ -54,7 +73,7 @@ global-macro-strategy/
 ```
 
 - プロンプト: `prompt/refined/1-day.md` を参照して実行
-- CSVを指定しない場合は `prompt/pre-review/` 配下の最新 `Export_*.csv` を自動使用
+- CSVを指定しない場合は `data/assets/` 配下の最新 `assetdata_*.csv` を自動使用
 - `state/current-clock.md` を自動読み込みし、12clockコンテキストをレポートに反映
 
 ### 週次レポート（週末）
@@ -67,21 +86,23 @@ global-macro-strategy/
 ```
 
 - プロンプト: `prompt/refined/2-7-weekly.md` を参照して実行
+- CSVを指定しない場合は `data/assets/` 配下の最新 `assetdata_*.csv` を自動使用
+- `state/current-clock.md` を自動読み込みし、12clockコンテキストをレポートに反映
 - 7日間リターンを主軸に、相関分析・12clock整合性チェック・来週シナリオを生成
 
 ---
 
-## CSVデータについて
+## 資産価格データについて
 
-- **出所**: Google Sheets から手動エクスポート
-- **ファイル命名規則**: `Export_YYYYMMDD_HHMMSS.csv`
-- **保存場所**: `prompt/pre-review/`
+- **出所**: `tools/export_csv.py`（yfinance 経由で自動取得）
+- **ファイル命名規則**: `assetdata_YYYYMMDD.csv`（YYYYMMDD = 基準日）
+- **保存場所**: `data/assets/`
 - **主要カラム**:
   - `Per Yesterday`: 前日比リターン（小数形式、×100で%換算）
   - `7`, `14`, `30`, `90`, `0101`, `365`: 各期間リターン（同上）
   - `Current`: 現在価格
   - `Yesterday` / `Two days before`（2回目）〜`365`（2回目）: 過去価格
-- **処理上の注意**: `NO`列が空白の区切り行は除外。同一Tickerは最初の出現を使用
+- **処理上の注意**: 区切り行は除去済み。同一Tickerは最初の出現を使用
 
 ---
 

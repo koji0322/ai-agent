@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- ジョブ識別子 -->
+  <key>Label</key>
+  <string>com.globalmacrosta.daily-report</string>
+
+  <!-- 実行コマンド -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/run_daily_report.sh</string>
+  </array>
+
+  <!--
+    火〜土曜 06:00 に実行（05:55 の assetdata 取得完了後）
+      Weekday: 2=火 3=水 4=木 5=金 6=土
+  -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Weekday</key><integer>2</integer>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key><integer>3</integer>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key><integer>4</integer>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key><integer>5</integer>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>0</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key><integer>6</integer>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>0</integer>
+    </dict>
+  </array>
+
+  <!-- ログ出力先 -->
+  <key>StandardOutPath</key>
+  <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/daily-report.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/daily-report.error.log</string>
+
+  <!-- スリープ中に時刻を過ぎた場合、起動後に実行しない（CSVが古くなるため） -->
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

@@ -33,9 +33,9 @@ ETFデータCSVを読み込んでください。
 
 **優先順位**:
 1. ユーザーがファイルパスを指定した場合 → そのパスを使用
-2. 指定がない場合 → 以下のディレクトリから **最新の Export_*.csv** を使用
+2. 指定がない場合 → 以下のディレクトリから **最新の assetdata_*.csv** を使用
    ```
-   /Users/matsubarakouji/ai-agent/economics/global-macro-strategy/prompt/pre-review/
+   /Users/matsubarakouji/ai-agent/economics/global-macro-strategy/data/assets/
    ```
 
 **データ処理規則**（1-dayと同様）:

@@ -1,2 +1,8 @@
 .claude/
 .DS_Store
+
+# global-macro-strategy: 旧フォーマットのテスト用エクスポートCSV
+economics/global-macro-strategy/prompt/pre-review/Export_*.csv
+
+# global-macro-strategy: launchd ログファイル
+economics/global-macro-strategy/tools/*.log

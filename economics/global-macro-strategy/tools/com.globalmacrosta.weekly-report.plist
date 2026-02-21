@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- ジョブ識別子 -->
+  <key>Label</key>
+  <string>com.globalmacrosta.weekly-report</string>
+
+  <!-- 実行コマンド -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/run_weekly_report.sh</string>
+  </array>
+
+  <!--
+    土曜 06:10 のみ実行
+    （05:55 価格取得 → 06:00 日次レポート → 06:10 週次レポート の順で完了するよう配置）
+    Weekday: 6=土曜
+  -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key><integer>6</integer>
+    <key>Hour</key><integer>6</integer>
+    <key>Minute</key><integer>10</integer>
+  </dict>
+
+  <!-- ログ出力先 -->
+  <key>StandardOutPath</key>
+  <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/weekly-report.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/weekly-report.error.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>
