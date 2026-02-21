@@ -46,3 +46,9 @@ cd "$PROJECT_DIR"
     > "$REPORT_PATH"
 
 echo "[DONE]  $(date '+%Y-%m-%d %H:%M:%S') レポート保存: $REPORT_PATH"
+
+# ── GitHub 同期 ───────────────────────────────────────────────────────────────
+bash "$PROJECT_DIR/tools/git_sync.sh" \
+    "$REPORT_PATH" \
+    "auto: report_${BASE_DATE} [日次レポート]" \
+    || echo "[WARN]  $(date '+%Y-%m-%d %H:%M:%S') git 同期に失敗しました"

@@ -10,8 +10,8 @@
   <!-- 実行コマンド -->
   <key>ProgramArguments</key>
   <array>
-    <string>/opt/homebrew/bin/python3</string>
-    <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/export_csv.py</string>
+    <string>/bin/bash</string>
+    <string>/Users/matsubarakouji/ai-agent/economics/global-macro-strategy/tools/run_export.sh</string>
   </array>
 
   <!--
